@@ -28,3 +28,11 @@
     color: #071741;
     font-weight: 600;
 }
+.bodyheader-selecttag{
+    margin-right: 1.5%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 30%; */
+}
