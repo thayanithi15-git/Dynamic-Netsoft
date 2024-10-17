@@ -7,40 +7,50 @@ export default function Quotationdetails() {
     <Box className="quotation-container">
       <Box className="quotation-title">Quotation Summary</Box>
       <Box className="quotation-summary">
-        <Box>
-          <Box>
-            <Box>DESCRIPTION</Box>
-            <Box>QTY</Box>
+        <Box className="quotation-top-container">
+          <Box className="quotation-titles">
+            <Box className="quatation-total-title">
+              <Box sx={{ width: "100%" }}>DESCRIPTION</Box>
+              <Box className="quotation-middle-value">QTY</Box>
+            </Box>
             <Box>AMOUNT</Box>
           </Box>
-          <Divider orientation="horizontal" className="quotation-hr-unique"/>
-          <Box>
-            <Box>Total Amount</Box>
-            <Box>3</Box>
-            <Box>$ 3,600.00</Box>
+          <Divider orientation="horizontal" className="quotation-hr-unique" />
+          <Box className="quotation-totals">
+            <Box className="quatation-total-title">
+              <Box sx={{ width: "100%" }}>Total Amount</Box>
+              <Box className="quotation-middle-value">3</Box>
+            </Box>
+            <Box sx={{ color: "#091B29" }}>$ 3,600.00</Box>
           </Box>
-          <Box>
-            <Box>Total Discount</Box>
-            <Box>10%</Box>
+          <Box className="quotation-totals">
+            <Box className="quatation-total-title">
+              <Box sx={{ width: "100%" }}>Total Discount</Box>
+              <Box className="quotation-middle-value">10%</Box>
+            </Box>
             <Box>- $ 100.00</Box>
           </Box>
-          <Divider orientation="horizontal" className="quotation-hr"/>
-          <Box>
-            <Box>Total Refundable</Box>
-            <Box>0%</Box>
-            <Box>$ 0</Box>
+          <Divider orientation="horizontal" className="quotation-hr" />
+          <Box className="quotation-totals">
+            <Box className="quatation-total-title">
+              <Box sx={{ width: "100%" }}>Total Refundable</Box>
+              <Box className="quotation-middle-value">0%</Box>
+            </Box>
+            <Box sx={{ color: "#091B29" }}>$ 0</Box>
           </Box>
-          <Divider orientation="horizontal" className="quotation-hr"/>
-          <Box>
-            <Box>Total Tax</Box>
-            <Box>18%</Box>
-            <Box>$ 648.00</Box>
+          <Divider orientation="horizontal" className="quotation-hr" />
+          <Box className="quotation-totals">
+            <Box className="quatation-total-title">
+              <Box sx={{ width: "100%" }}>Total Tax</Box>
+              <Box className="quotation-middle-value">18%</Box>
+            </Box>
+            <Box sx={{ color: "#091B29" }}>$ 648.00</Box>
           </Box>
-          <Divider orientation="horizontal" className="quotation-hr"/>
+          <Divider orientation="horizontal" className="quotation-hr" />
         </Box>
-        <Box>
-          <Divider orientation="horizontal" className="quotation-hr"/>
-          <Box>
+        <Box className="quotation-bottom-container">
+          <Divider orientation="horizontal" className="quotation-hr" />
+          <Box className="quotation-quote-amt">
             <Box>Quote Amount</Box>
             <Box>$ 4,148.00</Box>
           </Box>
