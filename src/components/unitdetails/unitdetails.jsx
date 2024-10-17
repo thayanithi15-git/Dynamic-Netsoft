@@ -1,4 +1,12 @@
-import { Box, colors, Dialog, Divider, Switch , Popover, Button,} from "@mui/material";
+import {
+  Box,
+  colors,
+  Dialog,
+  Divider,
+  Switch,
+  Popover,
+  Button,
+} from "@mui/material";
 import React, { useState } from "react";
 import "../../styles/unitdetails.css";
 import { BiBed } from "react-icons/bi";
@@ -10,8 +18,26 @@ import { RxCross1 } from "react-icons/rx";
 import { FiInfo } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa6";
 import { PiSwimmingPoolFill } from "react-icons/pi";
+import { RiSparkling2Fill } from "react-icons/ri";
+import { PiSquareHalfBottomLight } from "react-icons/pi";
+import { RiBook2Line } from "react-icons/ri";
+import Amenities1 from "../../assets/Amenities1.jpg";
+import Amenities2 from "../../assets/Amenities2.jpg";
+import Amenities3 from "../../assets/Amenities3.jpg";
+import Amenities4 from "../../assets/Amenities4.jpg";
+import Amenities5 from "../../assets/Amenities5.jpg";
+import Amenities6 from "../../assets/Amenities6.jpg";
+import Utility1 from "../../assets/Utility1.jpg";
+import Utility2 from "../../assets/Utility2.jpg";
+import Utility3 from "../../assets/Utility3.jpg";
+import Utility4 from "../../assets/Utility4.jpg";
+import Utility5 from "../../assets/Utility5.jpg";
+import Utility6 from "../../assets/Utility6.jpg";
 import House from "../../assets/House.jpg";
 import Pool from "../../assets/Pool.jpg";
+import GreenHouse from "../../assets/GreenHouse.jpg";
+import Room from "../../assets/Room.jpg";
+import Chairs from "../../assets/Chairs.jpg";
 
 export default function Unitdetails() {
   const [customise, setCustomise] = useState(false);
@@ -20,7 +46,6 @@ export default function Unitdetails() {
   const [addutilities, setAddUtilities] = useState(false);
   const [adddiscount, setAddDiscount] = useState(false);
   const [removecomponent, setRemoveComponent] = useState(false);
-
 
   const [customiseAnchor, setCustomiseAnchor] = useState(null);
 
@@ -33,8 +58,8 @@ export default function Unitdetails() {
   };
 
   const open = Boolean(customiseAnchor);
-  const id = open ? 'customise-popover' : undefined;
-    
+  const id = open ? "customise-popover" : undefined;
+
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
   const handleCustomise = () => {
@@ -119,6 +144,105 @@ export default function Unitdetails() {
     },
   ];
 
+  const pricingData = [
+    { id: 1, name: "Primary", color: "#B3776D", bgColor: "#FEEAEA80" },
+    { id: 2, name: "Secondary", color: "#896DB3", bgColor: "#EDE4FE80" },
+    { id: 3, name: "One Time Charges", color: "#6DAFB3", bgColor: "#DBF0F180" },
+    { id: 4, name: "Refundables", color: "#6D80B3", bgColor: "#E4EDFF80" },
+    { id: 5, name: "Inventory Item", color: "#B3A16D", bgColor: "#FFFAD880" },
+    { id: 6, name: "Parking Slot", color: "#B3776D", bgColor: "#FEEAEA80" },
+  ];
+
+  const amenitiesData = [
+    {
+      id: 1,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities1,
+    },
+    {
+      id: 2,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities2,
+    },
+    {
+      id: 3,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities3,
+    },
+    {
+      id: 4,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities4,
+    },
+    {
+      id: 5,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities5,
+    },
+    {
+      id: 6,
+      name: "Amenities name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Amenities6,
+    },
+  ];
+
+  const utilitiesData = [
+    {
+      id: 1,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility1,
+    },
+    {
+      id: 2,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility2,
+    },
+    {
+      id: 3,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility3,
+    },
+    {
+      id: 4,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility4,
+    },
+    {
+      id: 5,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility5,
+    },
+    {
+      id: 6,
+      name: "Utility name",
+      price: "$20.00",
+      valid: "Valid Feb 22 - 12 Feb 23",
+      img: Utility6,
+    },
+  ];
+
   return (
     <Box className="units-container">
       <Box className="units-title">Unit Details</Box>
@@ -163,28 +287,27 @@ export default function Unitdetails() {
         anchorEl={customiseAnchor}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-      >
+          vertical: "bottom",
+          horizontal: "left",
+        }}>
         <Box className="customise-container">
           <Box className="customise-headings">
             <Box className="customise-titles" onClick={handleAddPricing}>
               Add Pricing Component
             </Box>
-            <Divider className="customise-hr"/>
+            <Divider className="customise-hr" />
             <Box className="customise-titles" onClick={handleAddAmenities}>
               Add Amenities
             </Box>
-            <Divider className="customise-hr"/>
+            <Divider className="customise-hr" />
             <Box className="customise-titles" onClick={handleAddUtilities}>
               Add Utilities
             </Box>
-            <Divider className="customise-hr"/>
+            <Divider className="customise-hr" />
             <Box className="customise-titles" onClick={handleAddDiscount}>
               Add Discount
             </Box>
-            <Divider className="customise-hr"/>
+            <Divider className="customise-hr" />
             <Box className="customise-titles" onClick={handleRemoveComponent}>
               Remove Component
             </Box>
@@ -194,128 +317,73 @@ export default function Unitdetails() {
 
       <Dialog open={addpricing} onClose={() => setAddPricing(false)}>
         <Box className="pricing-main">
-          <Box className="pricing-header">
-            <Box>Pricing</Box>
+          <Box
+            className="pricing-header"
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "16px",
+            }}>
+            <Box sx={{ fontSize: "20px", fontWeight: "bold" }}>Pricing</Box>
             <RxCross1
               onClick={() => setAddPricing(false)}
               className="cross-icon"
+              style={{ cursor: "pointer" }}
             />
           </Box>
           <Box className="pricing-body">
-            <Box className="pricing-1" sx={{ backgroundColor: "#FEEAEA80" }}>
-              <Box className="pricing-1-title">
+            {pricingData.map((item) => (
+              <Box
+                key={item.id}
+                className="pricing-1"
+                sx={{
+                  backgroundColor: item.bgColor,
+                  marginBottom: "8px",
+                  padding: "10px",
+                  borderRadius: "8px",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}>
                 <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#B3776D" }}>
-                  01
+                  className="pricing-1-title"
+                  sx={{ display: "flex", alignItems: "center" }}>
+                  <Box
+                    className="pricing-1-value"
+                    sx={{
+                      backgroundColor: item.color,
+                      color: "white",
+                      width: "30px",
+                      height: "30px",
+                      borderRadius: "50%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: "10px",
+                    }}>
+                    {item.id < 10 ? `0${item.id}` : item.id}
+                  </Box>
+                  <Box
+                    className="pricing-1-name"
+                    sx={{ color: item.color, fontWeight: "500" }}>
+                    {item.name}
+                  </Box>
                 </Box>
-                <Box className="pricing-1-name" sx={{ color: "#B3776D" }}>
-                  Primary
-                </Box>
-              </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#B3776D" }}
-                />
-              </Box>
-            </Box>
-            <Box className="pricing-1" sx={{ backgroundColor: "#EDE4FE80" }}>
-              <Box className="pricing-1-title">
                 <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#896DB3" }}>
-                  02
-                </Box>
-                <Box className="pricing-1-name" sx={{ color: "#896DB3" }}>
-                  Secondary
-                </Box>
-              </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#896DB3" }}
-                />
-              </Box>
-            </Box>
-            <Box className="pricing-1" sx={{ backgroundColor: "#DBF0F180" }}>
-              <Box className="pricing-1-title">
-                <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#6DAFB3" }}>
-                  03
-                </Box>
-                <Box className="pricing-1-name" sx={{ color: "#6DAFB3" }}>
-                  One Time Charges
+                  className="pricing-icons"
+                  sx={{ display: "flex", alignItems: "center" }}>
+                  <FiInfo
+                    className="pricing-info"
+                    style={{ marginRight: "8px" }}
+                  />
+                  <FaAngleRight
+                    className="pricing-right"
+                    style={{ color: item.color }}
+                  />
                 </Box>
               </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#6DAFB3" }}
-                />
-              </Box>
-            </Box>
-            <Box className="pricing-1" sx={{ backgroundColor: "#E4EDFF80" }}>
-              <Box className="pricing-1-title">
-                <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#6D80B3" }}>
-                  04
-                </Box>
-                <Box className="pricing-1-name" sx={{ color: "#6D80B3" }}>
-                  Refundables
-                </Box>
-              </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#6D80B3" }}
-                />
-              </Box>
-            </Box>
-            <Box className="pricing-1" sx={{ backgroundColor: "#FFFAD880" }}>
-              <Box className="pricing-1-title">
-                <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#B3A16D" }}>
-                  05
-                </Box>
-                <Box className="pricing-1-name" sx={{ color: "#B3A16D" }}>
-                  Inventory Item
-                </Box>
-              </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#B3A16D" }}
-                />
-              </Box>
-            </Box>
-            <Box className="pricing-1" sx={{ backgroundColor: "#FEEAEA80" }}>
-              <Box className="pricing-1-title">
-                <Box
-                  className="pricing-1-value"
-                  sx={{ backgroundColor: "#B3776D" }}>
-                  06
-                </Box>
-                <Box className="pricing-1-name" sx={{ color: "#B3776D" }}>
-                  Parking Slot
-                </Box>
-              </Box>
-              <Box className="pricing-icons">
-                <FiInfo className="pricing-info" />
-                <FaAngleRight
-                  className="pricing-right"
-                  style={{ color: "#B3776D" }}
-                />
-              </Box>
-            </Box>
+            ))}
           </Box>
         </Box>
       </Dialog>
@@ -341,289 +409,181 @@ export default function Unitdetails() {
           </Box>
           <Box className="amenities-body">
             <Box className="available-amenities">Available Amenities</Box>
-            <Box className="amenities-1">
+            {amenitiesData.map((item) => (
+              <Box key={item.id} className="amenities-1">
                 <Box className="amenities-img-details">
                   <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
+                    <img src={item.img} className="amenities-img" />
                   </Box>
                   <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
+                    <Box>{item.name}</Box>
                     <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
+                      <Box>{item.price}</Box>
                       <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
+                      <Box>{item.valid}</Box>
                     </Box>
                   </Box>
                 </Box>
                 <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
+                  <Switch defaultChecked />
                 </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
+              </Box>
+            ))}
           </Box>
+          <Box className="amenities-update">Update & Save</Box>
         </Box>
       </Dialog>
 
       <Dialog open={addutilities} onClose={() => setAddUtilities(false)}>
-      <Box className="amenities-main">
+        <Box className="amenities-main">
           <Box className="amenities-header">
-            <Box>Add Amenities</Box>
+            <Box>Add Utility</Box>
             <RxCross1
-              onClick={() => setAddAmenities(false)}
+              onClick={() => setAddUtilities(false)}
               className="cross-icon"
             />
           </Box>
-          <Box className="amenities-subheader">
+          <Box className="utility-subheader">
             <Box className="amenities-icon-value">
-              <PiSwimmingPoolFill style={{ fontSize: "25px" }} />
+              <RiSparkling2Fill className="utility-icon" />
               <Box sx={{ display: "flex", gap: "0.4rem" }}>
                 <Box>05</Box>
-                <Box sx={{ fontWeight: "500" }}>Total Amenities</Box>
+                <Box sx={{ fontWeight: "500" }}>Total Utility</Box>
               </Box>
             </Box>
             <Box>$ 200.00</Box>
           </Box>
           <Box className="amenities-body">
-            <Box className="available-amenities">Available Amenities</Box>
-            <Box className="amenities-1">
+            <Box className="available-amenities">Available Utility</Box>
+            {utilitiesData.map((item) => (
+              <Box key={item.id} className="amenities-1">
                 <Box className="amenities-img-details">
                   <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
+                    <img src={item.img} className="amenities-img" />
                   </Box>
                   <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
+                    <Box>{item.name}</Box>
                     <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
+                      <Box>{item.price}</Box>
                       <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
+                      <Box>{item.valid}</Box>
                     </Box>
                   </Box>
                 </Box>
                 <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
+                  <Switch defaultChecked />
                 </Box>
+              </Box>
+            ))}
+          </Box>
+          <Box className="amenities-update">Update & Save</Box>
+        </Box>
+      </Dialog>
+
+      <Dialog open={adddiscount} onClose={() => setAddDiscount(false)}>
+        <Box className="discount-contents">
+          <Box className="discount-header">
+            <Box className="discount-title">Unit Details</Box>
+            <RxCross1
+              onClick={() => setAddDiscount(false)}
+              className="cross-icon"
+            />
+          </Box>
+          <Divider className="discount-hr" orientation="horizontal" />
+          <Box className="discount-details">
+            <Box className="discount-img-name">
+              <Box className="discount-img">
+                <Box className="discount-main-img">
+                  <img src={GreenHouse} className="discount-asset" />
+                </Box>
+                <Box className="discount-side-images">
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                  </Box>
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Chairs} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <img src={GreenHouse} className="discount-asset" />
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box className="discount-bottom">
+                <Box className="discount-name-status">
+                  <Box className="discount-name">Jumeirah Estate</Box>
+                  <Box className="discount-status">UNT-1234</Box>
+                </Box>
+                <Box className="discount-subname">
+                  Rubix Apartment, K Tower, Floor 1
+                </Box>
+                <Box className="discount-quantities">
+                  <BiBed />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiBathtubLight />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <GoHome />
+                  <Box className="discount-value">3BHK</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiSquareHalfBottomLight />
+                  <Box className="discount-value">2000</Box>
+                  <Box>Sq.Ft</Box>
+                </Box>
+                <Divider
+                  className="discount-hr"
+                  orientation="horizontal"
+                  sx={{ width: "97%" }}
+                />
+                <Box className="discount-book-view">
+                  <Box className="discount-icon-book">
+                    <RiBook2Line />
+                    <Box>Handbook</Box>
+                  </Box>
+                  <Box className="discount-view">View / Download</Box>
+                </Box>
+              </Box>
             </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
+            <Box className="discount-prices">
+              <Box className="discount-prices-container">
+                <Box className="prices-title">UNIT PRICE DETAIL</Box>
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box>$1,000</Box>
                 </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
+                <Box className="bill-discount">
+                  <Box>Discount</Box>
+                  <Box className="dis-amt">
+                    <Box className="price-amt">100,000</Box>
+                    <Divider className="price-amt-hr" />
+                    <Box className="price-aed">AED</Box>
                   </Box>
                 </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="prices-bottom">
+                  <Box className="amenity-name">
+                    <Box>Amenity Name here</Box>
+                    <Box>$1,000</Box>
                   </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
+                  <Box className="final-total">
+                    <Box>Final Total</Box>
+                    <Box>$1,200</Box>
                   </Box>
+                  <Box className="apply-dis">Apply Discount</Box>
                 </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
-            </Box>
-            <Box className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={Pool} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>Amenities name</Box>
-                    <Box className="amenities-status">
-                      <Box>$ 20.00</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>Valid Feb 22 - 12 Feb 23</Box>
-                    </Box>
-                  </Box>
-                </Box>
-                <Box className="amenities-switch">
-                  <Switch {...label} defaultChecked />
-                </Box>
+              </Box>
             </Box>
           </Box>
         </Box>
       </Dialog>
-      <Dialog open={adddiscount} onClose={() => setAddDiscount(false)}>
-        Discount
-      </Dialog>
+
       <Dialog open={removecomponent} onClose={() => setRemoveComponent(false)}>
         Remove Components
       </Dialog>

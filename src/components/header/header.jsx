@@ -13,7 +13,7 @@ import Logo from "../../assets/Logo.png";
 import { IoIosSearch } from "react-icons/io";
 import { GoBell } from "react-icons/go";
 import { FaAngleDown } from "react-icons/fa6";
-import Profile from "../../assets/Profile.png";
+import Profile from "../../assets/Profile.jpg";
 
 export default function Header() {
   return (

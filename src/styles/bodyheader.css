@@ -36,3 +36,10 @@
     align-items: center;
     /* height: 30%; */
 }
+
+.no-border-outline:hover, .no-border-outline:focus {
+    /* outline: none; */
+    /* border: none; */
+    /* box-shadow: none; */
+  }
+  

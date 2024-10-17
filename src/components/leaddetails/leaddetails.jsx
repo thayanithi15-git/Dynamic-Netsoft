@@ -1,7 +1,7 @@
 import { Box, Divider } from "@mui/material";
 import React from "react";
 import "../../styles/leaddetails.css";
-import Profile from "../../assets/Profile.png";
+import Profile from "../../assets/Profile.jpg";
 
 export default function Leaddetails() {
   return (
@@ -43,7 +43,7 @@ export default function Leaddetails() {
             <Box className="leaddetail-title">GRACE PERIOD</Box>
             <Box className="leaddetail-date">
               <Box>90 Days</Box>
-              <Box sx={{color: "#98A0AC"}}>(Beginning)</Box>
+              <Box sx={{color: "#98A0AC",fontWeight: "500"}}>(Beginning)</Box>
             </Box>
           </Box>
         </Box>
