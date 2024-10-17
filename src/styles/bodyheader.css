@@ -1,0 +1,30 @@
+.bodyheader-contents{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bodyheader-icon-create{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 25%;
+    height: 100%;
+}
+.bodyheader-icon-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27px;
+    height: 27px;
+    background-color: #E4E8EE;
+    border-radius: 50px;
+    font-size: 15px;
+}
+.bodyheader-create{
+    font-size: 16px;
+    color: #071741;
+    font-weight: 600;
+}

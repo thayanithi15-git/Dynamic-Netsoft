@@ -1,0 +1,30 @@
+.bodyroutings-contents{
+    font-size: 14px;
+    gap: 0.5rem;
+    color: #5078E1;
+    width: 95%;
+    height: 50%;
+    display: flex;
+    font-weight: 550;
+    align-items: center;
+    /* background-color: aqua; */
+}
+.bodyroutings-preview-container{
+    border-radius: 50px;
+    height: 27px;
+    width: 27px;
+    border: 1px solid #CBD7F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bodyroutings-preview{
+    background-color: #5078E1;
+    height: 22px;
+    width: 22px;
+    border-radius: 50px;
+    color: #ffff;
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+}

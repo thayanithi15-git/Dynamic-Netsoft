@@ -1,0 +1,113 @@
+.leaddetails-container{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+.leaddetail-maintitle{
+    height: 15%;
+    display: flex;
+    align-items: center;
+    /* background-color: aqua; */
+    color: #4E5A6B;
+    font-size: 14px;
+    font-weight: bold;
+}
+.leaddetail-profile{
+    height: 15%;
+    width: 100%;
+    border: 1px solid #E4E8EE;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    gap: 0.7rem;
+}
+.leaddetail-profilepic-container{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    /* background-color:     aquamarine; */
+    justify-content: center;
+    align-items: center;
+}
+.leaddetail-profilepic{
+    height: 80%;
+    width: 80%;
+    display: flex;
+}
+.leaddetail-maindetails{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.leaddetail-name-status{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: #091B29;
+}
+.leaddetail-status{
+    font-size: 10px;
+    background-color: #5078E11E;
+    border-radius: 4px;
+    padding: 1.5% 3% 1.5% 3%;
+}
+.leaddetail-no-email{
+    width: 95%;
+    justify-content: space-between;
+    display: flex;
+    font-size: 13px;
+    color: #4E5A6B;
+    align-items: center;
+}
+.leaddetail-dot{
+    height: 5px;
+    width: 4.8px;
+    background-color: #CED3DD;
+    border-radius: 50px;
+}
+.leaddetail-hr{
+    height: 6%;
+    width: 100%;
+}
+.leaddetail-quotation{
+    padding: 6% 0% 6% 0%;
+    height: 55%;
+    /* background-color: #091B29; */
+}
+.leaddetail-quotation-title{
+    color: #4E5A6B;
+    font-size: 14px;
+    font-weight: 600;
+}
+.leaddetail-dates{
+    padding-top: 6%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+}
+.leaddetail-title-date{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+.leaddetail-title{
+    font-size: 10px;
+    color: #98A0AC;
+    font-weight: 600;
+}
+.leaddetail-date{
+    font-size: 13px;
+    color: #091B29;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
