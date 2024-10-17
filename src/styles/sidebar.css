@@ -10,7 +10,7 @@
 .sidebar-icon-container{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
     /* height: 100%; */
     width: 100%;
@@ -24,7 +24,7 @@
     /* height: 100%; */
     /* width: 100%; */
     border-radius: 50px;
-    font-size: 15px;
+    font-size: 17px;
 
 }
 .sidebar-hr {
@@ -34,12 +34,16 @@
     height: 1px;
     border-radius: 50px;
 }
-.sidebar-subicons{
+.sidebar-subicons {
     display: flex;
     color: white;
     padding: 20%;
-    /* height: 100%; */
-    /* width: 100%; */
     border-radius: 50px;
     font-size: 23px;
-}
+    cursor: pointer;
+  }
+  .sidebar-subicons.clicked {
+    background-color: #5078E1; 
+    color: white;
+  }
+  

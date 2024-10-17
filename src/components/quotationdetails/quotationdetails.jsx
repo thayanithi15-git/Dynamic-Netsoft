@@ -11,7 +11,7 @@ export default function Quotationdetails() {
           <Box className="quotation-titles">
             <Box className="quatation-total-title">
               <Box sx={{ width: "100%" }}>DESCRIPTION</Box>
-              <Box>QTY</Box>
+              <Box className="quotation-middle-value">QTY</Box>
             </Box>
             <Box>AMOUNT</Box>
           </Box>
@@ -19,14 +19,14 @@ export default function Quotationdetails() {
           <Box className="quotation-totals">
             <Box className="quatation-total-title">
               <Box sx={{ width: "100%" }}>Total Amount</Box>
-              <Box>3</Box>
+              <Box className="quotation-middle-value">3</Box>
             </Box>
             <Box sx={{ color: "#091B29" }}>$ 3,600.00</Box>
           </Box>
           <Box className="quotation-totals">
             <Box className="quatation-total-title">
               <Box sx={{ width: "100%" }}>Total Discount</Box>
-              <Box>10%</Box>
+              <Box className="quotation-middle-value">10%</Box>
             </Box>
             <Box>- $ 100.00</Box>
           </Box>
@@ -34,7 +34,7 @@ export default function Quotationdetails() {
           <Box className="quotation-totals">
             <Box className="quatation-total-title">
               <Box sx={{ width: "100%" }}>Total Refundable</Box>
-              <Box>0%</Box>
+              <Box className="quotation-middle-value">0%</Box>
             </Box>
             <Box sx={{ color: "#091B29" }}>$ 0</Box>
           </Box>
@@ -42,7 +42,7 @@ export default function Quotationdetails() {
           <Box className="quotation-totals">
             <Box className="quatation-total-title">
               <Box sx={{ width: "100%" }}>Total Tax</Box>
-              <Box>18%</Box>
+              <Box className="quotation-middle-value">18%</Box>
             </Box>
             <Box sx={{ color: "#091B29" }}>$ 648.00</Box>
           </Box>

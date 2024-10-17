@@ -49,7 +49,7 @@ export default function Bodyheader() {
               lineHeight: "1.5",
               borderRadius: "8px",
               backgroundColor: "#F5F7FA",
-              border: "1px solid #E4E8EE", 
+              border: "1px solid #E4E8EE",
               color: "#091B29",
               '&:focus': { // This ensures the border stays during focus
                 borderColor: "red", 
