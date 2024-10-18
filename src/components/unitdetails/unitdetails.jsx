@@ -243,6 +243,76 @@ export default function Unitdetails() {
     },
   ];
 
+  const priceDetails = [
+    {
+      id: 1,
+      billName: "Bill Name Here",
+      amount: 1000,
+      discount: 100,
+      currency: "AED",
+    },
+    {
+      id: 2,
+      billName: "Bill Name Here",
+      amount: 1000,
+      discount: 150,
+      currency: "USD",
+    },
+  ];
+
+  // Currency conversion rates (example values, adjust as needed)
+  const currencyRates = {
+    AED: 1,
+    USD: 3.67,
+    EUR: 4.0,
+  };
+
+  // State to track currency selection for each product
+  const [selectedCurrencies, setSelectedCurrencies] = useState(
+    priceDetails.reduce((acc, item) => {
+      acc[item.id] = item.currency;
+      return acc;
+    }, {})
+  );
+
+  // Function to handle currency change for a specific product
+  const handleCurrencyChange = (e, itemId) => {
+    const newCurrency = e.target.value;
+    setSelectedCurrencies((prevCurrencies) => ({
+      ...prevCurrencies,
+      [itemId]: newCurrency,
+    }));
+  };
+
+  // Calculate the final total based on selected currencies
+  const finalTotal = priceDetails.reduce((acc, item) => {
+    const selectedCurrency = selectedCurrencies[item.id];
+    const amountInSelectedCurrency =
+      item.amount / currencyRates[selectedCurrency];
+    const discountInSelectedCurrency =
+      item.discount / currencyRates[selectedCurrency];
+    const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
+    return acc + finalAmount;
+  }, 0);
+
+  const initialBills = [
+    { id: 1, name: "Bill Name 1", amount: 1000 },
+    { id: 2, name: "Bill Name 2", amount: 1200 },
+    { id: 3, name: "Bill Name 3", amount: 1500 },
+    { id: 4, name: "Bill Name 4", amount: 1000 },
+    { id: 5, name: "Bill Name 5", amount: 800 },
+    { id: 6, name: "Bill Name 6", amount: 1100 },
+  ];
+
+  const [bills, setBills] = useState(initialBills);
+
+  const handleDelete = (id) => {
+    const updatedBills = bills.filter((bill) => bill.id !== id);
+    setBills(updatedBills);
+  };
+
+  const finalTotalafterremoving = bills.reduce((acc, bill) => acc + bill.amount, 0);
+
   return (
     <Box className="units-container">
       <Box className="units-title">Unit Details</Box>
@@ -560,44 +630,45 @@ export default function Unitdetails() {
             <Box className="discount-prices">
               <Box className="discount-prices-container">
                 <Box className="prices-title">UNIT PRICE DETAIL</Box>
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box>$1,000</Box>
-                </Box>
-                <Box className="bill-discount">
-                  <Box>Discount</Box>
-                  <Box className="dis-amt">
-                    <Box className="price-amt">100,000</Box>
-                    <Divider className="price-amt-hr" />
-                    <Box className="price-aed">
-                      <select className="currency-select">
-                        <option value="AED">AED</option>
-                        <option value="1200">$1,200</option>
-                        <option value="1500">$1,500</option>
-                      </select>
-                    </Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box>$1,000</Box>
-                </Box>
-                <Box className="bill-discount">
-                  <Box>Discount</Box>
-                  <Box className="dis-amt">
-                    <Box className="price-amt">100,000</Box>
-                    <Divider className="price-amt-hr" />
-                    <Box className="price-aed">
-                      <select className="currency-select">
-                        <option value="AED">AED</option>
-                        <option value="USD">$1,200</option>
-                        <option value="EUR">$1,500</option>
-                      </select>
-                    </Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
+
+                {priceDetails.map((item) => {
+                  const selectedCurrency = selectedCurrencies[item.id];
+                  const amountInSelectedCurrency =
+                    item.amount / currencyRates[selectedCurrency];
+                  const discountInSelectedCurrency =
+                    item.discount / currencyRates[selectedCurrency];
+
+                  return (
+                    <React.Fragment key={item.id}>
+                      <Box className="bill-name">
+                        <Box>{item.billName}</Box>
+                        <Box>${amountInSelectedCurrency.toFixed(2)}</Box>
+                      </Box>
+                      <Box className="bill-discount">
+                        <Box>Discount</Box>
+                        <Box className="dis-amt">
+                          <Box className="price-amt">
+                            {discountInSelectedCurrency.toFixed(2)}
+                          </Box>
+                          <Divider className="price-amt-hr" />
+                          <Box className="price-aed">
+                            <select
+                              className="currency-select"
+                              value={selectedCurrency}
+                              onChange={(e) =>
+                                handleCurrencyChange(e, item.id)
+                              }>
+                              <option value="AED">AED</option>
+                              <option value="USD">USD</option>
+                              <option value="EUR">EUR</option>
+                            </select>
+                          </Box>
+                        </Box>
+                      </Box>
+                      <Divider className="bill-hr" orientation="horizontal" />
+                    </React.Fragment>
+                  );
+                })}
                 <Box className="prices-bottom">
                   <Box className="amenity-name">
                     <Box>Amenity Name here</Box>
@@ -605,7 +676,7 @@ export default function Unitdetails() {
                   </Box>
                   <Box className="final-total">
                     <Box>Final Total</Box>
-                    <Box>$1,200</Box>
+                    <Box>${finalTotal.toFixed(2)}</Box>
                   </Box>
                   <Box
                     className="apply-dis"
@@ -699,50 +770,29 @@ export default function Unitdetails() {
             <Box className="discount-prices">
               <Box className="discount-prices-container">
                 <Box className="prices-title">UNIT PRICE DETAIL</Box>
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box className="prices-trash">
-                    <Box>$1,000</Box>
-                    <Box>
-                      <HiOutlineTrash className="prices-trash-icon" />
+                <Box className="removing-items">
+                {/* Mapping through the bills */}
+                {bills.map((bill) => (
+                  <React.Fragment key={bill.id}>
+                    <Box className="bill-name">
+                      <Box>{bill.name}</Box>
+                      <Box className="prices-trash">
+                        <Box>${bill.amount}</Box>
+                        <Box onClick={() => handleDelete(bill.id)}>
+                          <HiOutlineTrash className="prices-trash-icon" />
+                        </Box>
+                      </Box>
                     </Box>
-                  </Box>
+                    <Divider className="bill-hr" orientation="horizontal" />
+                  </React.Fragment>
+                ))}
                 </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box className="prices-trash">
-                    <Box>$1,000</Box>
-                    <Box>
-                      <HiOutlineTrash className="prices-trash-icon" />
-                    </Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box className="prices-trash">
-                    <Box>$1,000</Box>
-                    <Box>
-                      <HiOutlineTrash className="prices-trash-icon" />
-                    </Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box className="prices-trash">
-                    <Box>$1,000</Box>
-                    <Box>
-                      <HiOutlineTrash className="prices-trash-icon" />
-                    </Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
+
+                {/* Final total */}
                 <Box className="prices-bottom">
                   <Box className="final-total">
                     <Box>Final Total</Box>
-                    <Box>$1,200</Box>
+                    <Box>${finalTotalafterremoving}</Box>
                   </Box>
                   <Box
                     className="apply-dis"

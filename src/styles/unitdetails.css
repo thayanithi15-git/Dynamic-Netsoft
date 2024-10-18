@@ -653,6 +653,16 @@
 
 /* remove component dialog  */
 
+.removing-items{
+    height: 200vh;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.removing-items::-webkit-scrollbar{
+    display: none;
+}
 .prices-trash{
     width: 35%;
     display: flex;
@@ -660,6 +670,7 @@
     align-items: center     ;
 }
 .prices-trash-icon{
+    cursor: pointer;
     color: #FF4B4B;
   font-size: 20px;
   background: #FFECEC;
