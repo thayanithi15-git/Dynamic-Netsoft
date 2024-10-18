@@ -40,17 +40,30 @@ import Room from "../../assets/Room.jpg";
 import Chairs from "../../assets/Chairs.jpg";
 
 export default function Unitdetails() {
+  const [activeSales, setActiveSales] = useState({});
+
   const [customise, setCustomise] = useState(false);
   const [addpricing, setAddPricing] = useState(false);
   const [addamenities, setAddAmenities] = useState(false);
   const [addutilities, setAddUtilities] = useState(false);
   const [adddiscount, setAddDiscount] = useState(false);
   const [removecomponent, setRemoveComponent] = useState(false);
+  const [hoveredInfoId, setHoveredInfoId] = useState(null);
+  const [checkedAmenities, setCheckedAmenities] = useState({});
 
   const [unitdetails, setUnitDetails] = useState(false);
   const [customiseAnchor, setCustomiseAnchor] = useState(null);
 
+  const handleAmtSale = (id, event) => {
+    event.stopPropagation();
+    setActiveSales((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
+  };
+
   const handleCustomiseClick = (event) => {
+    event.stopPropagation();
     setCustomiseAnchor(event.currentTarget);
   };
 
@@ -63,7 +76,8 @@ export default function Unitdetails() {
 
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
-  const handleCustomise = () => {
+  const handleCustomise = (event) => {
+    event.stopPropagation();
     setUnitDetails(true);
   };
 
@@ -87,6 +101,14 @@ export default function Unitdetails() {
     setRemoveComponent(true);
   };
 
+  const handleMouseEnter = (id) => {
+    setHoveredInfoId(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredInfoId(null);
+  };
+
   const Estates = [
     {
       id: 1,
@@ -100,7 +122,7 @@ export default function Unitdetails() {
       bhk: 2,
     },
     {
-      id: 1,
+      id: 2,
       house: House,
       name: "Jumeirah Estate",
       sale: 1200,
@@ -111,7 +133,7 @@ export default function Unitdetails() {
       bhk: 2,
     },
     {
-      id: 1,
+      id: 3,
       house: House,
       name: "Jumeirah Estate",
       sale: 1200,
@@ -122,7 +144,7 @@ export default function Unitdetails() {
       bhk: 2,
     },
     {
-      id: 1,
+      id: 4,
       house: House,
       name: "Jumeirah Estate",
       sale: 1200,
@@ -133,7 +155,7 @@ export default function Unitdetails() {
       bhk: 2,
     },
     {
-      id: 1,
+      id: 5,
       house: House,
       name: "Jumeirah Estate",
       sale: 1200,
@@ -153,6 +175,13 @@ export default function Unitdetails() {
     { id: 5, name: "Inventory Item", color: "#B3A16D", bgColor: "#FFFAD880" },
     { id: 6, name: "Parking Slot", color: "#B3776D", bgColor: "#FEEAEA80" },
   ];
+
+  const handleSwitchChange = (id) => {
+    setCheckedAmenities((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   const amenitiesData = [
     {
@@ -308,28 +337,50 @@ export default function Unitdetails() {
     setBills(updatedBills);
   };
 
-  const finalTotalafterremoving = bills.reduce((acc, bill) => acc + bill.amount, 0);
+  const finalTotalafterremoving = bills.reduce(
+    (acc, bill) => acc + bill.amount,
+    0
+  );
 
   return (
     <Box className="units-container">
       <Box className="units-title">Unit Details</Box>
-      <Box className="unit-all-estates" >
+      <Box className="unit-all-estates">
         {Estates.map((estate) => (
-          <Box key={estate.id} className="unit-estate" onClick={handleCustomise}>
+          <Box
+            key={estate.id}
+            className="unit-estate"
+            onClick={handleCustomise}>
             <Box className="unit-img-container">
               <img src={estate.house} className="unit-img" />
               <HiOutlineTrash className="unit-trash" />
             </Box>
+
             <Box className="unit-details">
               <Box className="unit-estatename">
                 <Box>{estate.name}</Box>
-                <Box>$ {estate.sale}</Box>
+                <Box>
+                  {/* Conditionally render the discount message */}
+                  {activeSales[estate.id] && (
+                    <Box className="discount-message"> % Discount Applied </Box>
+                  )}
+                  {/* Sale amount with toggle click */}
+                  <Box
+                    onClick={(event) => handleAmtSale(estate.id, event)}
+                    className={
+                      activeSales[estate.id] ? "sale-active" : "sale-inactive"
+                    }>
+                    $ {estate.sale}
+                  </Box>
+                </Box>
               </Box>
+
               <Box className="unit-estate-subdetails">
                 <Box>{estate.subname}</Box>
                 <Box className="leaddetail-dot"></Box>
                 <Box>{estate.area} Sq.Ft</Box>
               </Box>
+
               <Box className="unit-estate-quantities">
                 <BiBed />
                 <Box>{estate.bed}</Box>
@@ -340,6 +391,7 @@ export default function Unitdetails() {
                 <GoHome />
                 <Box>{estate.bhk}BHK</Box>
               </Box>
+
               <Box className="estate-customise" onClick={handleCustomiseClick}>
                 <FaPlus />
                 <Box>Customise</Box>
@@ -442,8 +494,21 @@ export default function Unitdetails() {
                   sx={{ display: "flex", alignItems: "center" }}>
                   <FiInfo
                     className="pricing-info"
-                    style={{ marginRight: "8px" }}
+                    style={{
+                      cursor: "pointer",
+                      marginRight: "8px",
+                      color: hoveredInfoId === item.id ? "#656F7B" : "#CED3DD",
+                    }}
+                    onMouseEnter={() => handleMouseEnter(item.id)}
+                    onMouseLeave={handleMouseLeave}
                   />
+                  {hoveredInfoId === item.id && (
+                    <Box className="pricing-info-text">
+                      Base rent or monthly rental amount. You can have only one
+                      primary pricing component per property.
+                    </Box>
+                  )}
+
                   <FaAngleRight
                     className="pricing-right"
                     style={{ color: item.color }}
@@ -477,23 +542,48 @@ export default function Unitdetails() {
           <Box className="amenities-body">
             <Box className="available-amenities">Available Amenities</Box>
             {amenitiesData.map((item) => (
-              <Box key={item.id} className="amenities-1">
-                <Box className="amenities-img-details">
-                  <Box className="amenities-img-container">
-                    <img src={item.img} className="amenities-img" />
-                  </Box>
-                  <Box className="amenities-name-status">
-                    <Box>{item.name}</Box>
-                    <Box className="amenities-status">
-                      <Box>{item.price}</Box>
-                      <Box className="leaddetail-dot"></Box>
-                      <Box>{item.valid}</Box>
+              <Box key={item.id} className="amenities-main-container">
+                <Box className="amenities-1">
+                  <Box className="amenities-img-details">
+                    <Box className="amenities-img-container">
+                      <img
+                        src={item.img}
+                        className="amenities-img"
+                        alt={item.name}
+                      />
+                    </Box>
+                    <Box className="amenities-name-status">
+                      <Box>{item.name}</Box>
+                      <Box className="amenities-status">
+                        <Box>{item.price}</Box>
+                        <Box className="leaddetail-dot"></Box>
+                        <Box>{item.valid}</Box>
+                      </Box>
                     </Box>
                   </Box>
+                  <Box className="amenities-switch">
+                    <Switch
+                      checked={!!checkedAmenities[item.id]}
+                      onChange={() => handleSwitchChange(item.id)}
+                    />
+                  </Box>
                 </Box>
-                <Box className="amenities-switch">
-                  <Switch defaultChecked />
-                </Box>
+                <Divider
+                  orientation="horizontal"
+                  className="amenities-free-hr"
+                />
+                {checkedAmenities[item.id] && (
+                  <Box className="amenities-checkbox">
+                    <label className="custom-checkbox">
+                      <input
+                        type="checkbox"
+                        readOnly
+                      />
+                      <span className="checkmark"></span>
+                    </label>
+                    <span>Free applicability</span>
+                  </Box>
+                )}
               </Box>
             ))}
           </Box>
@@ -523,7 +613,7 @@ export default function Unitdetails() {
           <Box className="amenities-body">
             <Box className="available-amenities">Available Utility</Box>
             {utilitiesData.map((item) => (
-              <Box key={item.id} className="amenities-1">
+              <Box key={item.id} className="utilities-1">
                 <Box className="amenities-img-details">
                   <Box className="amenities-img-container">
                     <img src={item.img} className="amenities-img" />
@@ -538,7 +628,7 @@ export default function Unitdetails() {
                   </Box>
                 </Box>
                 <Box className="amenities-switch">
-                  <Switch defaultChecked />
+                  <Switch />
                 </Box>
               </Box>
             ))}
@@ -768,20 +858,20 @@ export default function Unitdetails() {
               <Box className="discount-prices-container">
                 <Box className="prices-title">UNIT PRICE DETAIL</Box>
                 <Box className="removing-items">
-                {bills.map((bill) => (
-                  <React.Fragment key={bill.id}>
-                    <Box className="bill-name">
-                      <Box>{bill.name}</Box>
-                      <Box className="prices-trash">
-                        <Box>${bill.amount}</Box>
-                        <Box onClick={() => handleDelete(bill.id)}>
-                          <HiOutlineTrash className="prices-trash-icon" />
+                  {bills.map((bill) => (
+                    <React.Fragment key={bill.id}>
+                      <Box className="bill-name">
+                        <Box>{bill.name}</Box>
+                        <Box className="prices-trash">
+                          <Box>${bill.amount}</Box>
+                          <Box onClick={() => handleDelete(bill.id)}>
+                            <HiOutlineTrash className="prices-trash-icon" />
+                          </Box>
                         </Box>
                       </Box>
-                    </Box>
-                    <Divider className="bill-hr" orientation="horizontal" />
-                  </React.Fragment>
-                ))}
+                      <Divider className="bill-hr" orientation="horizontal" />
+                    </React.Fragment>
+                  ))}
                 </Box>
                 <Box className="prices-bottom">
                   <Box className="final-total">
@@ -800,7 +890,6 @@ export default function Unitdetails() {
         </Box>
       </Dialog>
 
-
       <Dialog
         open={unitdetails}
         onClose={() => setUnitDetails(false)}
@@ -809,7 +898,7 @@ export default function Unitdetails() {
           <Box className="discount-header">
             <Box className="discount-title">Unit Details</Box>
             <RxCross1
-              onClick={() => setAddDiscount(false)}
+              onClick={() => setUnitDetails(false)}
               className="cross-icon"
             />
           </Box>
@@ -897,10 +986,7 @@ export default function Unitdetails() {
                       </Box>
                       <Box className="bill-discount">
                         <Box>Discount</Box>
-                        <Box className="dis-unit-details">
-                          
-                            $ 1,200
-                          </Box>
+                        <Box className="dis-unit-details">$ 1,200</Box>
                       </Box>
                       <Divider className="bill-hr" orientation="horizontal" />
                     </React.Fragment>

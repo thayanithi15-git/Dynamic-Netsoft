@@ -32,6 +32,27 @@
     flex-direction: column;
     align-items: center;
 }
+.sale-active {
+    color: orange;
+    font-weight: bold;
+  }
+  .sale-inactive {
+    color: black; /* Default color */
+  }
+  
+  .discount-message {
+    padding: 2.5%;
+    border-radius: 4px 0px 0px 4px;
+    background-color: #FFF4EB;
+    position: absolute;
+    top: -30px;
+    right: -15px;
+    font-size: 10px;
+    color: orange;
+    margin-bottom: 4px;
+    display: block;
+  }
+  
 .unit-img-container{
     width: 100%;
     height: 50%;
@@ -67,6 +88,7 @@
     justify-content: space-evenly;
 }
 .unit-estatename{
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -178,6 +200,7 @@
     gap: 1rem;
     align-items: center;
 }
+
 .pricing-1-value{
     border-radius: 50px;
     color: white;
@@ -197,6 +220,26 @@
 .pricing-icons{
     display: flex;
     gap: 1rem;
+    position: relative;
+}
+.pricing-info-text{
+    position: absolute;
+    top: -200%;
+    left: -100%;
+    transform: translate(-50%, -50%);
+    color: #656F7B;
+    border: 1px solid #E6EBF2;
+    background-color: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 250px;
+    padding: 0% 10% 0% 10%;
+    border-radius: 4px;
 }
 .pricing-right{
     color: #B3776D;
@@ -262,7 +305,86 @@
 .amenities-body::-webkit-scrollbar{
     display: none;
 }
+.amenities-main-container{
+    border: 1px solid #E4E8EE;
+    border-radius: 6px;
+    align-items: center;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 99.5%;
+}
+.amenities-free-hr{
+    background-color: 1px solid #E4E8EE;
+    width: 100%;
+}
+.amenities-checkbox{
+    gap: 0.3rem;
+    padding: 1.5% 0% 1.5% 0%;
+    width: 93%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #4E5A6B;
+}
+.checkbox-input{
+    border-radius: 50px;
+}
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .custom-checkbox input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #888;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .custom-checkbox input[type="checkbox"]:checked {
+  background-color: #5078E1;
+  border-color: #5078E1;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + .checkmark::before {
+  content: '✔';
+  color: white;
+  font-size: 11px;
+  position: absolute;
+  top: 50%;
+  left: -180%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark {
+    position: relative;
+    width: 5px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+  }
+  
+  
 .amenities-1{
+    height: 50px;
+    width: 93%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.utilities-1{
     height: 50px;
     padding: 2%;
     display: flex;
