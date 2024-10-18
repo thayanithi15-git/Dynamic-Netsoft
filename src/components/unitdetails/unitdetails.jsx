@@ -809,7 +809,7 @@ export default function Unitdetails() {
           <Box className="discount-header">
             <Box className="discount-title">Unit Details</Box>
             <RxCross1
-              onClick={() => setAddDiscount(false)}
+              onClick={() => setUnitDetails(false)}
               className="cross-icon"
             />
           </Box>
