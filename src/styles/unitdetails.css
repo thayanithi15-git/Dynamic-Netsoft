@@ -351,6 +351,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 1000px;
 }
 .discount-header{
     display: flex;
@@ -371,10 +373,10 @@
 .discount-details{
     display: flex;
     height: 500px;
-    width:  100%;
+    /* width:  100%; */
     justify-content: center;
     align-items: center;
-    /* height: 300px; */
+    /* height: 500px; */
 }
 .discount-img-name{
     /* background-color: #5078E1; */
@@ -410,6 +412,7 @@
 }
 .discount-side-img{
     /* height: 100%; */
+
     width: 50%;
     gap: 1rem;
 }
@@ -419,6 +422,41 @@
     width: 100%;
     border-radius: 8px;
 }
+.discount-asset-last{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+}
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  /* Text centered on the image */
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; /* White text */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1; /* Ensure it stays above the overlay */
+  }
+  
+  .img-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% opacity */
+    border-radius: 8px; /* Match the border-radius of the image */
+  }
+  
 .discount-bottom{
     height: 70%;
     display: flex;
@@ -465,6 +503,7 @@
     align-items: center;
 }
 .discount-icon-book{
+    cursor: pointer;
     /* width: 20%; */
     display: flex;
     gap: 0.5rem;
@@ -473,6 +512,7 @@
     color: #091B29;
 }
 .discount-view{
+    cursor: pointer;
     font-size: 14px;
     color: #5078E1;
 }
@@ -507,6 +547,7 @@
     font-size: 14px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .bill-discount{
     color: #98A0AC;
@@ -529,13 +570,38 @@
 .price-amt{
     /* padding: 0% 3% 0% 0%; */
     font-size: 12px;
+    padding: 3% 3.8% 3% 3.8%;
 }
 .price-aed{
     color: #091B29;
     font-weight: 600;
     font-size: 12px;
     padding: 1%;
+    width: 150px;
 }
+  
+  .currency-select {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0% 0% 0% 0%;
+    font-size: 12px;
+    color: #091b29;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .currency-select option{
+    cursor: pointer;
+  }
+  
+  .currency-select:focus,
+  .currency-select:hover {
+    outline: none;
+    border-color: #5078e1;
+  }
+  
 .price-amt-hr{
     background-color: #E4E8EE;
     width: 1px;
@@ -572,6 +638,7 @@
     padding: 3% 2% 3% 2%;
 }
 .apply-dis{
+    cursor: pointer;
     display: flex;
     align-items: center;
     text-align: center;
@@ -581,4 +648,22 @@
     border-radius: 4px;
     font-size: 14px;
     padding: 3% 2% 3% 2%;
+}
+
+
+/* remove component dialog  */
+
+.prices-trash{
+    width: 35%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center     ;
+}
+.prices-trash-icon{
+    color: #FF4B4B;
+  font-size: 20px;
+  background: #FFECEC;
+  border-radius: 5px;
+  padding: 40%;
+  font-size: 14px;
 }

@@ -6,6 +6,7 @@
     justify-content: space-between;
 }
 .bodyheader-icon-create{
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

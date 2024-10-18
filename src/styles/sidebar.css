@@ -17,6 +17,7 @@
     gap: 0.5rem;
 }
 .sidebar-icons{
+  cursor: pointer;
     display: flex;
     color: white;
     background-color: #5078E1;
