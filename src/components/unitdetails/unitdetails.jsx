@@ -480,7 +480,10 @@ export default function Unitdetails() {
         </Box>
       </Dialog>
 
-      <Dialog open={adddiscount} onClose={() => setAddDiscount(false)}>
+      <Dialog
+        open={adddiscount}
+        onClose={() => setAddDiscount(false)}
+        maxWidth="lg">
         <Box className="discount-contents">
           <Box className="discount-header">
             <Box className="discount-title">Unit Details</Box>
@@ -510,7 +513,10 @@ export default function Unitdetails() {
                       <img src={Chairs} className="discount-asset" />
                     </Box>
                     <Box className="discount-side-img">
-                      <img src={GreenHouse} className="discount-asset" />
+                      <Box className="img-container">
+                        <img src={GreenHouse} className="discount-asset-last" />
+                        <Box className="overlay-text">+ 8</Box>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
@@ -563,7 +569,32 @@ export default function Unitdetails() {
                   <Box className="dis-amt">
                     <Box className="price-amt">100,000</Box>
                     <Divider className="price-amt-hr" />
-                    <Box className="price-aed">AED</Box>
+                    <Box className="price-aed">
+                      <select className="currency-select">
+                        <option value="AED">AED</option>
+                        <option value="1200">$1,200</option>
+                        <option value="1500">$1,500</option>
+                      </select>
+                    </Box>
+                  </Box>
+                </Box>
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box>$1,000</Box>
+                </Box>
+                <Box className="bill-discount">
+                  <Box>Discount</Box>
+                  <Box className="dis-amt">
+                    <Box className="price-amt">100,000</Box>
+                    <Divider className="price-amt-hr" />
+                    <Box className="price-aed">
+                      <select className="currency-select">
+                        <option value="AED">AED</option>
+                        <option value="USD">$1,200</option>
+                        <option value="EUR">$1,500</option>
+                      </select>
+                    </Box>
                   </Box>
                 </Box>
                 <Divider className="bill-hr" orientation="horizontal" />
@@ -576,7 +607,11 @@ export default function Unitdetails() {
                     <Box>Final Total</Box>
                     <Box>$1,200</Box>
                   </Box>
-                  <Box className="apply-dis">Apply Discount</Box>
+                  <Box
+                    className="apply-dis"
+                    onClick={() => setAddDiscount(false)}>
+                    Apply Discount
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -584,8 +619,141 @@ export default function Unitdetails() {
         </Box>
       </Dialog>
 
-      <Dialog open={removecomponent} onClose={() => setRemoveComponent(false)}>
-        Remove Components
+      <Dialog
+        open={removecomponent}
+        onClose={() => setRemoveComponent(false)}
+        maxWidth="lg">
+        <Box className="discount-contents">
+          <Box className="discount-header">
+            <Box className="discount-title">Remove Component</Box>
+            <RxCross1
+              onClick={() => setRemoveComponent(false)}
+              className="cross-icon"
+            />
+          </Box>
+          <Divider className="discount-hr" orientation="horizontal" />
+          <Box className="discount-details">
+            <Box className="discount-img-name">
+              <Box className="discount-img">
+                <Box className="discount-main-img">
+                  <img src={GreenHouse} className="discount-asset" />
+                </Box>
+                <Box className="discount-side-images">
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                  </Box>
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Chairs} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <Box className="img-container">
+                        <img src={GreenHouse} className="discount-asset-last" />
+                        <Box className="overlay-text">+ 8</Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box className="discount-bottom">
+                <Box className="discount-name-status">
+                  <Box className="discount-name">Jumeirah Estate</Box>
+                  <Box className="discount-status">UNT-1234</Box>
+                </Box>
+                <Box className="discount-subname">
+                  Rubix Apartment, K Tower, Floor 1
+                </Box>
+                <Box className="discount-quantities">
+                  <BiBed />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiBathtubLight />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <GoHome />
+                  <Box className="discount-value">3BHK</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiSquareHalfBottomLight />
+                  <Box className="discount-value">2000</Box>
+                  <Box>Sq.Ft</Box>
+                </Box>
+                <Divider
+                  className="discount-hr"
+                  orientation="horizontal"
+                  sx={{ width: "97%" }}
+                />
+                <Box className="discount-book-view">
+                  <Box className="discount-icon-book">
+                    <RiBook2Line />
+                    <Box>Handbook</Box>
+                  </Box>
+                  <Box className="discount-view">View / Download</Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box className="discount-prices">
+              <Box className="discount-prices-container">
+                <Box className="prices-title">UNIT PRICE DETAIL</Box>
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box className="prices-trash">
+                    <Box>$1,000</Box>
+                    <Box>
+                      <HiOutlineTrash className="prices-trash-icon" />
+                    </Box>
+                  </Box>
+                </Box>
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box className="prices-trash">
+                    <Box>$1,000</Box>
+                    <Box>
+                      <HiOutlineTrash className="prices-trash-icon" />
+                    </Box>
+                  </Box>
+                </Box>
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box className="prices-trash">
+                    <Box>$1,000</Box>
+                    <Box>
+                      <HiOutlineTrash className="prices-trash-icon" />
+                    </Box>
+                  </Box>
+                </Box>
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="bill-name">
+                  <Box>Bill Name Here</Box>
+                  <Box className="prices-trash">
+                    <Box>$1,000</Box>
+                    <Box>
+                      <HiOutlineTrash className="prices-trash-icon" />
+                    </Box>
+                  </Box>
+                </Box>
+                <Divider className="bill-hr" orientation="horizontal" />
+                <Box className="prices-bottom">
+                  <Box className="final-total">
+                    <Box>Final Total</Box>
+                    <Box>$1,200</Box>
+                  </Box>
+                  <Box
+                    className="apply-dis"
+                    onClick={() => setRemoveComponent(false)}>
+                    Update & Save
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       </Dialog>
     </Box>
   );

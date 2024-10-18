@@ -1,3 +1,6 @@
+button{
+    cursor: pointer;
+}
 .home-page{
     background-color: aqua;
     height: 100vh;
