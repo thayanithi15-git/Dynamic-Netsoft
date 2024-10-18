@@ -47,6 +47,7 @@ export default function Unitdetails() {
   const [adddiscount, setAddDiscount] = useState(false);
   const [removecomponent, setRemoveComponent] = useState(false);
 
+  const [unitdetails, setUnitDetails] = useState(false);
   const [customiseAnchor, setCustomiseAnchor] = useState(null);
 
   const handleCustomiseClick = (event) => {
@@ -63,7 +64,7 @@ export default function Unitdetails() {
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
   const handleCustomise = () => {
-    setCustomise(true);
+    setUnitDetails(true);
   };
 
   const handleAddPricing = () => {
@@ -243,12 +244,78 @@ export default function Unitdetails() {
     },
   ];
 
+  const priceDetails = [
+    {
+      id: 1,
+      billName: "Bill Name Here",
+      amount: 1000,
+      discount: 100,
+      currency: "AED",
+    },
+    {
+      id: 2,
+      billName: "Bill Name Here",
+      amount: 1000,
+      discount: 150,
+      currency: "USD",
+    },
+  ];
+
+  const currencyRates = {
+    AED: 1,
+    USD: 3.67,
+    EUR: 4.0,
+  };
+
+  const [selectedCurrencies, setSelectedCurrencies] = useState(
+    priceDetails.reduce((acc, item) => {
+      acc[item.id] = item.currency;
+      return acc;
+    }, {})
+  );
+
+  const handleCurrencyChange = (e, itemId) => {
+    const newCurrency = e.target.value;
+    setSelectedCurrencies((prevCurrencies) => ({
+      ...prevCurrencies,
+      [itemId]: newCurrency,
+    }));
+  };
+
+  const finalTotal = priceDetails.reduce((acc, item) => {
+    const selectedCurrency = selectedCurrencies[item.id];
+    const amountInSelectedCurrency =
+      item.amount / currencyRates[selectedCurrency];
+    const discountInSelectedCurrency =
+      item.discount / currencyRates[selectedCurrency];
+    const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
+    return acc + finalAmount;
+  }, 0);
+
+  const initialBills = [
+    { id: 1, name: "Bill Name 1", amount: 1000 },
+    { id: 2, name: "Bill Name 2", amount: 1200 },
+    { id: 3, name: "Bill Name 3", amount: 1500 },
+    { id: 4, name: "Bill Name 4", amount: 1000 },
+    { id: 5, name: "Bill Name 5", amount: 800 },
+    { id: 6, name: "Bill Name 6", amount: 1100 },
+  ];
+
+  const [bills, setBills] = useState(initialBills);
+
+  const handleDelete = (id) => {
+    const updatedBills = bills.filter((bill) => bill.id !== id);
+    setBills(updatedBills);
+  };
+
+  const finalTotalafterremoving = bills.reduce((acc, bill) => acc + bill.amount, 0);
+
   return (
     <Box className="units-container">
       <Box className="units-title">Unit Details</Box>
-      <Box className="unit-all-estates">
+      <Box className="unit-all-estates" >
         {Estates.map((estate) => (
-          <Box key={estate.id} className="unit-estate">
+          <Box key={estate.id} className="unit-estate" onClick={handleCustomise}>
             <Box className="unit-img-container">
               <img src={estate.house} className="unit-img" />
               <HiOutlineTrash className="unit-trash" />
@@ -480,7 +547,10 @@ export default function Unitdetails() {
         </Box>
       </Dialog>
 
-      <Dialog open={adddiscount} onClose={() => setAddDiscount(false)}>
+      <Dialog
+        open={adddiscount}
+        onClose={() => setAddDiscount(false)}
+        maxWidth="lg">
         <Box className="discount-contents">
           <Box className="discount-header">
             <Box className="discount-title">Unit Details</Box>
@@ -510,7 +580,10 @@ export default function Unitdetails() {
                       <img src={Chairs} className="discount-asset" />
                     </Box>
                     <Box className="discount-side-img">
-                      <img src={GreenHouse} className="discount-asset" />
+                      <Box className="img-container">
+                        <img src={GreenHouse} className="discount-asset-last" />
+                        <Box className="overlay-text">+ 8</Box>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
@@ -554,19 +627,45 @@ export default function Unitdetails() {
             <Box className="discount-prices">
               <Box className="discount-prices-container">
                 <Box className="prices-title">UNIT PRICE DETAIL</Box>
-                <Box className="bill-name">
-                  <Box>Bill Name Here</Box>
-                  <Box>$1,000</Box>
-                </Box>
-                <Box className="bill-discount">
-                  <Box>Discount</Box>
-                  <Box className="dis-amt">
-                    <Box className="price-amt">100,000</Box>
-                    <Divider className="price-amt-hr" />
-                    <Box className="price-aed">AED</Box>
-                  </Box>
-                </Box>
-                <Divider className="bill-hr" orientation="horizontal" />
+
+                {priceDetails.map((item) => {
+                  const selectedCurrency = selectedCurrencies[item.id];
+                  const amountInSelectedCurrency =
+                    item.amount / currencyRates[selectedCurrency];
+                  const discountInSelectedCurrency =
+                    item.discount / currencyRates[selectedCurrency];
+
+                  return (
+                    <React.Fragment key={item.id}>
+                      <Box className="bill-name">
+                        <Box>{item.billName}</Box>
+                        <Box>${amountInSelectedCurrency.toFixed(2)}</Box>
+                      </Box>
+                      <Box className="bill-discount">
+                        <Box>Discount</Box>
+                        <Box className="dis-amt">
+                          <Box className="price-amt">
+                            {discountInSelectedCurrency.toFixed(2)}
+                          </Box>
+                          <Divider className="price-amt-hr" />
+                          <Box className="price-aed">
+                            <select
+                              className="currency-select"
+                              value={selectedCurrency}
+                              onChange={(e) =>
+                                handleCurrencyChange(e, item.id)
+                              }>
+                              <option value="AED">AED</option>
+                              <option value="USD">USD</option>
+                              <option value="EUR">EUR</option>
+                            </select>
+                          </Box>
+                        </Box>
+                      </Box>
+                      <Divider className="bill-hr" orientation="horizontal" />
+                    </React.Fragment>
+                  );
+                })}
                 <Box className="prices-bottom">
                   <Box className="amenity-name">
                     <Box>Amenity Name here</Box>
@@ -574,9 +673,13 @@ export default function Unitdetails() {
                   </Box>
                   <Box className="final-total">
                     <Box>Final Total</Box>
-                    <Box>$1,200</Box>
+                    <Box>${finalTotal.toFixed(2)}</Box>
                   </Box>
-                  <Box className="apply-dis">Apply Discount</Box>
+                  <Box
+                    className="apply-dis"
+                    onClick={() => setAddDiscount(false)}>
+                    Apply Discount
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -584,8 +687,235 @@ export default function Unitdetails() {
         </Box>
       </Dialog>
 
-      <Dialog open={removecomponent} onClose={() => setRemoveComponent(false)}>
-        Remove Components
+      <Dialog
+        open={removecomponent}
+        onClose={() => setRemoveComponent(false)}
+        maxWidth="lg">
+        <Box className="discount-contents">
+          <Box className="discount-header">
+            <Box className="discount-title">Remove Component</Box>
+            <RxCross1
+              onClick={() => setRemoveComponent(false)}
+              className="cross-icon"
+            />
+          </Box>
+          <Divider className="discount-hr" orientation="horizontal" />
+          <Box className="discount-details">
+            <Box className="discount-img-name">
+              <Box className="discount-img">
+                <Box className="discount-main-img">
+                  <img src={GreenHouse} className="discount-asset" />
+                </Box>
+                <Box className="discount-side-images">
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                  </Box>
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Chairs} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <Box className="img-container">
+                        <img src={GreenHouse} className="discount-asset-last" />
+                        <Box className="overlay-text">+ 8</Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box className="discount-bottom">
+                <Box className="discount-name-status">
+                  <Box className="discount-name">Jumeirah Estate</Box>
+                  <Box className="discount-status">UNT-1234</Box>
+                </Box>
+                <Box className="discount-subname">
+                  Rubix Apartment, K Tower, Floor 1
+                </Box>
+                <Box className="discount-quantities">
+                  <BiBed />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiBathtubLight />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <GoHome />
+                  <Box className="discount-value">3BHK</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiSquareHalfBottomLight />
+                  <Box className="discount-value">2000</Box>
+                  <Box>Sq.Ft</Box>
+                </Box>
+                <Divider
+                  className="discount-hr"
+                  orientation="horizontal"
+                  sx={{ width: "97%" }}
+                />
+                <Box className="discount-book-view">
+                  <Box className="discount-icon-book">
+                    <RiBook2Line />
+                    <Box>Handbook</Box>
+                  </Box>
+                  <Box className="discount-view">View / Download</Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box className="discount-prices">
+              <Box className="discount-prices-container">
+                <Box className="prices-title">UNIT PRICE DETAIL</Box>
+                <Box className="removing-items">
+                {bills.map((bill) => (
+                  <React.Fragment key={bill.id}>
+                    <Box className="bill-name">
+                      <Box>{bill.name}</Box>
+                      <Box className="prices-trash">
+                        <Box>${bill.amount}</Box>
+                        <Box onClick={() => handleDelete(bill.id)}>
+                          <HiOutlineTrash className="prices-trash-icon" />
+                        </Box>
+                      </Box>
+                    </Box>
+                    <Divider className="bill-hr" orientation="horizontal" />
+                  </React.Fragment>
+                ))}
+                </Box>
+                <Box className="prices-bottom">
+                  <Box className="final-total">
+                    <Box>Final Total</Box>
+                    <Box>${finalTotalafterremoving}</Box>
+                  </Box>
+                  <Box
+                    className="apply-dis"
+                    onClick={() => setRemoveComponent(false)}>
+                    Update & Save
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Dialog>
+
+
+      <Dialog
+        open={unitdetails}
+        onClose={() => setUnitDetails(false)}
+        maxWidth="lg">
+        <Box className="discount-contents">
+          <Box className="discount-header">
+            <Box className="discount-title">Unit Details</Box>
+            <RxCross1
+              onClick={() => setAddDiscount(false)}
+              className="cross-icon"
+            />
+          </Box>
+          <Divider className="discount-hr" orientation="horizontal" />
+          <Box className="discount-details">
+            <Box className="discount-img-name">
+              <Box className="discount-img">
+                <Box className="discount-main-img">
+                  <img src={GreenHouse} className="discount-asset" />
+                </Box>
+                <Box className="discount-side-images">
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <img src={Room} className="discount-asset" />
+                    </Box>
+                  </Box>
+                  <Box className="discount-row-img">
+                    <Box className="discount-side-img">
+                      <img src={Chairs} className="discount-asset" />
+                    </Box>
+                    <Box className="discount-side-img">
+                      <Box className="img-container">
+                        <img src={GreenHouse} className="discount-asset-last" />
+                        <Box className="overlay-text">+ 8</Box>
+                      </Box>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+              <Box className="discount-bottom">
+                <Box className="discount-name-status">
+                  <Box className="discount-name">Jumeirah Estate</Box>
+                  <Box className="discount-status">UNT-1234</Box>
+                </Box>
+                <Box className="discount-subname">
+                  Rubix Apartment, K Tower, Floor 1
+                </Box>
+                <Box className="discount-quantities">
+                  <BiBed />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiBathtubLight />
+                  <Box className="discount-value">2</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <GoHome />
+                  <Box className="discount-value">3BHK</Box>
+                  <Box className="leaddetail-dot"></Box>
+                  <PiSquareHalfBottomLight />
+                  <Box className="discount-value">2000</Box>
+                  <Box>Sq.Ft</Box>
+                </Box>
+                <Divider
+                  className="discount-hr"
+                  orientation="horizontal"
+                  sx={{ width: "97%" }}
+                />
+                <Box className="discount-book-view">
+                  <Box className="discount-icon-book">
+                    <RiBook2Line />
+                    <Box>Handbook</Box>
+                  </Box>
+                  <Box className="discount-view">View / Download</Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box className="discount-prices">
+              <Box className="discount-prices-container">
+                <Box className="prices-title">UNIT PRICE DETAILS</Box>
+
+                {priceDetails.map((item) => {
+                  const selectedCurrency = selectedCurrencies[item.id];
+                  const amountInSelectedCurrency =
+                    item.amount / currencyRates[selectedCurrency];
+                  const discountInSelectedCurrency =
+                    item.discount / currencyRates[selectedCurrency];
+
+                  return (
+                    <React.Fragment key={item.id}>
+                      <Box className="bill-name">
+                        <Box>{item.billName}</Box>
+                        <Box>${amountInSelectedCurrency.toFixed(2)}</Box>
+                      </Box>
+                      <Box className="bill-discount">
+                        <Box>Discount</Box>
+                        <Box className="dis-unit-details">
+                          
+                            $ 1,200
+                          </Box>
+                      </Box>
+                      <Divider className="bill-hr" orientation="horizontal" />
+                    </React.Fragment>
+                  );
+                })}
+                <Box className="prices-bottom">
+                  <Box className="final-total">
+                    <Box>Final Total</Box>
+                    <Box>${finalTotal.toFixed(2)}</Box>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
       </Dialog>
     </Box>
   );
