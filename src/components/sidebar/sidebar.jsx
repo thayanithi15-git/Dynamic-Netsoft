@@ -10,21 +10,23 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { HiCloudArrowUp } from "react-icons/hi2";
 import { PiNotepadFill } from "react-icons/pi";
 import { AiFillFolderOpen, AiFillMessage } from "react-icons/ai";
+import { FaChevronLeft } from "react-icons/fa6";
 
-export default function Sidebar({onIconclick}) {
+export default function Sidebar({ onIconclick, onSidebar }) {
   const [clickedIcon, setClickedIcon] = useState(2);
+  const [sidebar, Setsidebar] = useState(false);
 
   const Icons = [
-    { id: 1, icon: <RiDashboardFill /> },
-    { id: 2, icon: <RiTeamLine /> },
-    { id: 3, icon: <ImUserTie /> },
-    { id: 4, icon: <PiBuildings /> },
-    { id: 5, icon: <HiTag /> },
-    { id: 6, icon: <IoSettingsSharp /> },
-    { id: 7, icon: <HiCloudArrowUp /> },
-    { id: 8, icon: <PiNotepadFill /> },
-    { id: 9, icon: <AiFillFolderOpen /> },
-    { id: 10, icon: <AiFillMessage /> }
+    { id: 1, icon: <RiDashboardFill />, content: "Dashboard" },
+    { id: 2, icon: <RiTeamLine />, content: "Unity" },
+    { id: 3, icon: <ImUserTie />, content: "Person" },
+    { id: 4, icon: <PiBuildings />, content: "Buildings" },
+    { id: 5, icon: <HiTag />, content: "Tags" },
+    { id: 6, icon: <IoSettingsSharp />, content: "Settings" },
+    { id: 7, icon: <HiCloudArrowUp />, content: "Download" },
+    { id: 8, icon: <PiNotepadFill />, content: "Note" },
+    { id: 9, icon: <AiFillFolderOpen />, content: "Files" },
+    { id: 10, icon: <AiFillMessage />, content: "Message" },
   ];
 
   const handleClick = (id) => {
@@ -36,22 +38,43 @@ export default function Sidebar({onIconclick}) {
     onIconclick(clickedIcon);
   }, [clickedIcon, onIconclick]);
 
+  const handleSidebarOpen = () => {
+    onSidebar();
+    Setsidebar(!sidebar);
+  };
+
   return (
-    <Box className="sidebar-contents">
-      <Box className="sidebar-icon-container">
-        <FaChevronRight className="sidebar-icons" />
+    <Box className={`sidebar-contents ${sidebar ? "open" : ""}`}>
+      <Box
+        className={`sidebar-icon-container ${sidebar ? "open" : ""}`}
+        onClick={handleSidebarOpen}>
+          <Box className={`sidebar-topactions ${sidebar ? "open" : ""}`}>
+        {sidebar ? <Box>Property Manager For Start up</Box> : ""}
+        {sidebar ? <FaChevronLeft className={`sidebar-icons ${sidebar ? "open" : ""}`} /> : <FaChevronRight className={`sidebar-icons ${sidebar ? "open" : ""}`} />}
+        </Box>
       </Box>
-      <Divider className="sidebar-hr" orientation="horizontal" flexItem />
+      <Divider className={`sidebar-hr ${sidebar ? "open" : ""}`} orientation="horizontal" flexItem />
       <Box className="sidebar-icon-container">
         {Icons.map((item) => (
           <Box
             key={item.id}
             className={`sidebar-subicons ${
-              clickedIcon === item.id ? "clicked" : ""
+              clickedIcon === item.id ? "clicked" : sidebar ? "open" : ""
             }`}
-            onClick={() => handleClick(item.id)}
-          >
-            {item.icon}
+            onClick={() => handleClick(item.id)}>
+            <Box
+              className={`sidebar-subicons-main ${
+                clickedIcon === item.id && sidebar
+                  ? "click-open"
+                  : clickedIcon === item.id
+                  ? "clicked"
+                  : sidebar
+                  ? "open"
+                  : ""
+              }`}>
+              {item.icon}
+            </Box>
+            {sidebar ? <Box>{item.content}</Box> : ""}
           </Box>
         ))}
       </Box>
