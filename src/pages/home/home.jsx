@@ -11,12 +11,18 @@ import Quotationdetails from "../../components/quotationdetails/quotationdetails
 import Bodyfooter from "../../components/bodyfooter/bodyfooter";
 
 export default function Home() {
+
   const [clickedIcon, setClickedIcon] = useState();
+  const [sidebar, Setsidebar] = useState(false);
 
   const handleclickedIcon = (onIconclick) => {
     setClickedIcon(onIconclick);
     console.log("Icon clicked = ", onIconclick);
   };
+
+  const onSidebar = () => {
+    Setsidebar(!sidebar);
+  }
 
   return (
     <Box className="home-page">
@@ -24,11 +30,11 @@ export default function Home() {
         <Header />
       </Box>
       <Box className="home-body">
-        <Box className="home-sidebar">
-          <Sidebar onIconclick={handleclickedIcon} />
+        <Box className={`home-sidebar ${sidebar ? "open" : ""}`}>
+          <Sidebar onIconclick={handleclickedIcon} onSidebar={onSidebar}/>
         </Box>
         {clickedIcon == 2 ? (
-          <Box className="home-main">
+          <Box className={`home-main ${sidebar ? "open" : ""}`}>
             <Box className="home-main-header">
               <Bodyheader />
             </Box>

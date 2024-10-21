@@ -26,10 +26,18 @@ button{
     width: 5%;
     background-color: #333333;
     height: 100%;
+    transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+.home-sidebar.open{
+    width: 20%;
+}
+.home-main.open{
+    width: 80%;
 }
 .home-main{
     width: 95%;
     height: 100%;
+    transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 .home-main-header{
     display: flex;
