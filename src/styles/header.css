@@ -70,8 +70,23 @@
   align-items: center;
 }
 .header-notification{
+  cursor: pointer;
     width: 20px;
     height: 20px;
+    font-size: 24px;
+}
+.header-notification-con.clicked{
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  font-size: 22px;
+  padding: 0% 2% 0% 2%;
+  height: 30px;
+  border-radius: 4px;
+}
+.header-notification.clicked{
+  /* height: 100%;
+  width: 100%; */
 }
 
 .header-badge{

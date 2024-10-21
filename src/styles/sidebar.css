@@ -7,14 +7,37 @@
   /* justify-content: space-evenly; */
   gap: 1rem;
 }
+.sidebar-contents.open{
+  width: 70%;
+  gap: 1rem;
+
+}
+.sidebar-topactions{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.sidebar-topactions.open{
+  display: flex;
+  color: white;
+  font-size: 15px;
+  width: 220px;
+  transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+  align-items: center;
+}
 .sidebar-icon-container{
-    display: flex;
-    flex-direction: column;
+      display: flex;
+      flex-direction: column;
     align-items: center;
     justify-content: center;
     /* height: 100%; */
     width: 100%;
-    gap: 0.5rem;
+    gap: 0.1rem;
+}
+.sidebar-icon-container.open{
+  /* gap: 0.2rem; */
 }
 .sidebar-icons{
   cursor: pointer;
@@ -22,11 +45,27 @@
     color: white;
     background-color: #5078E1;
     padding: 20%;
-    /* height: 100%; */
-    /* width: 100%; */
+    /* height: 100%;
+    width: 90%; */
     border-radius: 50px;
-    font-size: 17px;
-
+    font-size: 35px;
+}
+.sidebar-icons.open{
+  padding: 6%;
+  font-size: 40px;
+}
+.sidebar-subicons-main{
+  display: flex;
+    color: white;
+    padding: 30%;
+    border-radius: 50px;
+    font-size: 23px;
+    cursor: pointer;
+}
+.sidebar-subicons-main.open,.sidebar-subicons-main.click-open{
+  font-size: 20px;
+  padding: 7%;
+  
 }
 .sidebar-hr {
     display: flex;
@@ -35,15 +74,24 @@
     height: 1px;
     border-radius: 50px;
 }
+.sidebar-hr.open{
+  width: 230px;
+  display: flex;
+  align-self: center;
+  transition: width 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
 .sidebar-subicons {
     display: flex;
-    color: white;
-    padding: 20%;
-    border-radius: 50px;
-    font-size: 23px;
+    width: 100%;
+    align-items: center;
+    /* padding: 20%; */
+    /* border-radius: 50px; */
+    /* font-size: 23px; */
     cursor: pointer;
+    gap: 1rem;
+    color: white;
   }
-  .sidebar-subicons.clicked {
+  .sidebar-subicons-main.clicked,.sidebar-subicons-main.click-open{
     background-color: #5078E1; 
     color: white;
   }
