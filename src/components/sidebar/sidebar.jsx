@@ -18,15 +18,15 @@ export default function Sidebar({ onIconclick, onSidebar }) {
 
   const Icons = [
     { id: 1, icon: <RiDashboardFill />, content: "Dashboard" },
-    { id: 2, icon: <RiTeamLine />, content: "Unity" },
-    { id: 3, icon: <ImUserTie />, content: "Person" },
-    { id: 4, icon: <PiBuildings />, content: "Buildings" },
-    { id: 5, icon: <HiTag />, content: "Tags" },
-    { id: 6, icon: <IoSettingsSharp />, content: "Settings" },
-    { id: 7, icon: <HiCloudArrowUp />, content: "Download" },
-    { id: 8, icon: <PiNotepadFill />, content: "Note" },
-    { id: 9, icon: <AiFillFolderOpen />, content: "Files" },
-    { id: 10, icon: <AiFillMessage />, content: "Message" },
+    { id: 2, icon: <RiTeamLine />, content: "Companies" },
+    { id: 3, icon: <ImUserTie />, content: "Owners" },
+    { id: 4, icon: <PiBuildings />, content: "Properties" },
+    { id: 5, icon: <HiTag />, content: "Pricing" },
+    { id: 6, icon: <IoSettingsSharp />, content: "Setting" },
+    { id: 7, icon: <HiCloudArrowUp />, content: "Data Management" },
+    { id: 8, icon: <PiNotepadFill />, content: "Reports" },
+    { id: 9, icon: <AiFillFolderOpen />, content: "Documents" },
+    { id: 10, icon: <AiFillMessage />, content: "Communications" },
   ];
 
   const handleClick = (id) => {
