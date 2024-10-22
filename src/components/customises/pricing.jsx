@@ -137,17 +137,17 @@ export default function Pricing({ onclose }) {
             </Box>
           ))}
         {pricingcards == 1 ? (
-          <Primary />
+          <Primary Onback={() => setPricingCards(null)}/>
         ) : pricingcards == 2 ? (
-          <Secondary />
+          <Secondary Onback={() => setPricingCards(null)}/>
         ) : pricingcards == 3 ? (
-          <Onetimecharges />
+          <Onetimecharges Onback={() => setPricingCards(null)}/>
         ) : pricingcards == 4 ? (
-          <Refundables />
+          <Refundables Onback={() => setPricingCards(null)}/>
         ) : pricingcards == 5 ? (
-          <Inventoryitem />
+          <Inventoryitem Onback={() => setPricingCards(null)}/>
         ) : pricingcards == 6 ? (
-          <Parkingslot />
+          <Parkingslot Onback={() => setPricingCards(null)}/>
         ) : (
           ""
         )}

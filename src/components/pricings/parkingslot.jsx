@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { FaAngleRight, FaChevronDown } from "react-icons/fa6";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Parkingslot() {
+export default function Parkingslot({Onback}) {
 
 
     const [activeTab, setActiveTab] = useState("Lease");
@@ -23,7 +23,9 @@ export default function Parkingslot() {
     setSelectedValue(event.target.value);
   };
 
-  
+  const handleBack = () => {
+    Onback();
+  }
 
   return (
     <Box className="pricing-sec">
@@ -160,7 +162,7 @@ export default function Parkingslot() {
             </Box>
             </Box>
             <Box className="pricing-main-buttons">
-              <button className="pricing-button-back">Back</button>
+              <button className="pricing-button-back" onClick={handleBack}>Back</button>
               <button className="pricing-button-create">
                 Create Pricing Component
               </button>

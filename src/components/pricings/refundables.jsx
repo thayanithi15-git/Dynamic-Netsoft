@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { FaAngleRight, FaChevronDown } from "react-icons/fa6";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Refundables() {
+export default function Refundables({Onback}) {
 
 
     const [activeTab, setActiveTab] = useState("Lease");
@@ -23,7 +23,9 @@ export default function Refundables() {
     setSelectedValue(event.target.value);
   };
 
-  
+  const handleBack = () => {
+    Onback();
+  }
 
   return (
     <Box className="pricing-sec">
@@ -148,7 +150,7 @@ export default function Refundables() {
             </Box>
             </Box>
             <Box className="pricing-main-buttons">
-              <button className="pricing-button-back">Back</button>
+              <button className="pricing-button-back" onClick={handleBack}>Back</button>
               <button className="pricing-button-create">
                 Create Pricing Component
               </button>

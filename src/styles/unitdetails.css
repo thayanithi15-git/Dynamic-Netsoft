@@ -380,7 +380,7 @@
   
   
 .amenities-1{
-    height: 50px;
+    height: 65px;
     width: 93%;
     padding: 2%;
     display: flex;
@@ -389,7 +389,7 @@
     
 }
 .utilities-1{
-    height: 50px;
+    height: 65px;
     padding: 2%;
     display: flex;
     justify-content: space-between;
