@@ -26,6 +26,7 @@ export default function Inventoryitem({Onback}) {
 
   return (
     <Box className="pricing-sec">
+      <Box className="pricing-top-sub">
       <Box className="RevenueType">Revenue Type</Box>
       <Box className="category-tabs">
         {categories.map((category) => (
@@ -38,6 +39,7 @@ export default function Inventoryitem({Onback}) {
             {category}
           </button>
         ))}
+      </Box>
       </Box>
       <Box className="category-tabs">
         <Box className="col">
@@ -121,8 +123,7 @@ export default function Inventoryitem({Onback}) {
           </Box>
         </Box>
       </Box>
-
-      <Box className="category-tabs">
+      <Box className="pricing-top-sub">
         <Box className="col">
           <Box>Chargeble</Box>
           <Box className="category-tabs">
@@ -141,8 +142,8 @@ export default function Inventoryitem({Onback}) {
       </Box>
       <Box className="pricing-inventoryitems">
         <Box className="pricing-inventoryitems-sub">
-          <Box className="pricing-bottom-top">Item Unit Price</Box>
-          <Box className="pricing-bottom-input">
+          <Box className="pricing-bottom-top" sx={{fontSize: "12.5px"}}>Item Unit Price</Box>
+          <Box className="pricing-bottom-input" sx={{marginTop: "4%"}}>
             <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
               200
             </Box>
@@ -150,8 +151,8 @@ export default function Inventoryitem({Onback}) {
           </Box>
         </Box>
         <Box className="pricing-inventoryitems-sub">
-          <Box className="pricing-bottom-top">Quantity</Box>
-          <Box className="pricing-bottom-input">
+          <Box className="pricing-bottom-top" sx={{fontSize: "12.5px"}}>Quantity</Box>
+          <Box className="pricing-bottom-input" sx={{marginTop: "4%"}}>
             <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
               10
             </Box>

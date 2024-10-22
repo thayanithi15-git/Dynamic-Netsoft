@@ -175,15 +175,15 @@ export default function Unitdetails() {
     }, {})
   );
 
-  const finalTotal = priceDetails.reduce((acc, item) => {
-    const selectedCurrency = selectedCurrencies[item.id];
-    const amountInSelectedCurrency =
-      item.amount / currencyRates[selectedCurrency];
-    const discountInSelectedCurrency =
-      item.discount / currencyRates[selectedCurrency];
-    const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
-    return acc + finalAmount;
-  }, 0);
+  // const finalTotal = priceDetails.reduce((acc, item) => {
+  //   const selectedCurrency = selectedCurrencies[item.id];
+  //   const amountInSelectedCurrency =
+  //     item.amount / currencyRates[selectedCurrency];
+  //   const discountInSelectedCurrency =
+  //     item.discount / currencyRates[selectedCurrency];
+  //   const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
+  //   return acc + finalAmount;
+  // }, 0);
 
   return (
     <Box className="units-container">
@@ -280,7 +280,7 @@ export default function Unitdetails() {
 
       <Dialog open={addpricing} onClose={() => setAddPricing(false)} sx={{"& .MuiPaper-root": {
         width: "484px",
-        height: "550px",
+        height: "600px",
         overflow: "hidden"
       }}}>
         <Pricing onclose={() => setAddPricing(false)} />
@@ -413,7 +413,10 @@ export default function Unitdetails() {
                 <Box className="prices-bottom">
                   <Box className="final-total">
                     <Box>Final Total</Box>
-                    <Box>${finalTotal.toFixed(2)}</Box>
+                    <Box>
+                      {/* ${finalTotal.toFixed(2)} */}
+                      $ 1,200
+                    </Box>
                   </Box>
                 </Box>
               </Box>
