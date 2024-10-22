@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { FaAngleRight, FaChevronDown } from "react-icons/fa6";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Inventoryitem() {
+export default function Inventoryitem({Onback}) {
   const [activeTab, setActiveTab] = useState("Lease");
   const [act, setact] = useState("Month");
   const [act1, setact1] = useState("Amount");
@@ -19,6 +19,10 @@ export default function Inventoryitem() {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  const handleBack = () => {
+    Onback();
+  }
 
   return (
     <Box className="pricing-sec">
@@ -156,7 +160,7 @@ export default function Inventoryitem() {
         </Box>
       </Box>
       <Box className="pricing-main-buttons">
-        <button className="pricing-button-back">Back</button>
+        <button className="pricing-button-back" onClick={handleBack}>Back</button>
         <button className="pricing-button-create">
           Create Pricing Component
         </button>

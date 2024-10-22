@@ -212,8 +212,9 @@ export default function Unitdetails() {
                     onClick={(event) => handleAmtSale(estate.id, event)}
                     className={
                       activeSales[estate.id] ? "sale-active" : "sale-inactive"
-                    }>
-                    $ {estate.sale}
+                    }>+
+                    $ 
+                   { activeSales[estate.id] ? <span>{estate.sale-300}</span> : <span>{estate.sale}</span> }
                   </Box>
                 </Box>
               </Box>

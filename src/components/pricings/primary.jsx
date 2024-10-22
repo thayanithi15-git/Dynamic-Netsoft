@@ -5,7 +5,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import { FaAngleRight, FaChevronDown } from "react-icons/fa6";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function Primary() {
+export default function Primary({Onback}) {
   const [revenueitem, setRevenueItem] = useState("Lease");
   const [componentitem, setComponentItem] = useState("Amount");
 
@@ -25,6 +25,10 @@ export default function Primary() {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
+  const handleBack = () => {
+    Onback();
+  }
 
 
   return (
@@ -172,7 +176,7 @@ export default function Primary() {
         </Box>
       </Box>
       <Box className="pricing-main-buttons">
-        <button className="pricing-button-back">Back</button>
+        <button className="pricing-button-back" onClick={handleBack} >Back</button>
         <button className="pricing-button-create">
           Create Pricing Component
         </button>
