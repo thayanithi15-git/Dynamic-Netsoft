@@ -7,7 +7,7 @@ import {
   Popover,
   Button,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../styles/unitdetails.css";
 import { BiBed } from "react-icons/bi";
 import { PiBathtubLight } from "react-icons/pi";
@@ -27,10 +27,14 @@ import Amenities from "../customises/amenities";
 import Utilities from "../customises/utilities";
 import Discount from "../customises/discount";
 import Remove from "../customises/remove";
+import {TotalContext} from "../usecontext/usecontext";
 
 export default function Unitdetails() {
-  const [activeSales, setActiveSales] = useState({});
 
+  const { setTotal } = useContext(TotalContext);
+  const  { setQty } = useContext(TotalContext);
+  const [activeSales, setActiveSales] = useState({});
+  const [totalSales, setTotalSales] = useState(0);
   const [customise, setCustomise] = useState(false);  
   const [addpricing, setAddPricing] = useState(false);
   const [addamenities, setAddAmenities] = useState(false);
@@ -90,7 +94,7 @@ export default function Unitdetails() {
     setRemoveComponent(true);
   };
 
-  const Estates = [
+  const [Estates, setEstates] = useState([
     {
       id: 1,
       house: House,
@@ -146,20 +150,20 @@ export default function Unitdetails() {
       tub: 15,
       bhk: 23,
     },
-  ];
+  ]);
 
   const priceDetails = [
     {
       id: 1,
-      billName: "Bill Name Here",
-      amount: 1000,
+      billName: "Form House",
+      amount: 3400,
       discount: 100,
       currency: "AED",
     },
     {
       id: 2,
-      billName: "Bill Name Here",
-      amount: 1000,
+      billName: "Wolverine",
+      amount: 800,
       discount: 150,
       currency: "USD",
     },
@@ -178,15 +182,56 @@ export default function Unitdetails() {
     }, {})
   );
 
-  // const finalTotal = priceDetails.reduce((acc, item) => {
-  //   const selectedCurrency = selectedCurrencies[item.id];
-  //   const amountInSelectedCurrency =
-  //     item.amount / currencyRates[selectedCurrency];
-  //   const discountInSelectedCurrency =
-  //     item.discount / currencyRates[selectedCurrency];
-  //   const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
-  //   return acc + finalAmount;
-  // }, 0);
+  const calculateTotalSales = (updatedEstates) => {
+    const total = updatedEstates.reduce((acc, estate) => {
+      return acc + estate.sale;
+    }, 0);
+    setTotal(total);
+    setQty(updatedEstates.length);
+  };
+
+  const handleDeleteEstate = (id, event) => {
+    event.stopPropagation();
+    const updatedEstates = Estates.filter((estate) => estate.id !== id);
+    setEstates(updatedEstates);
+    calculateTotalSales(updatedEstates);
+  };
+
+  useEffect(() => {
+    calculateTotalSales(Estates);
+  }, [Estates]); 
+  
+
+  // const handleAmtSale = (id, event) => {
+  //   event.stopPropagation();
+  //   setActiveSales((prevState) => {
+  //     const updatedSales = { ...prevState, [id]: !prevState[id] };
+  //     const updatedEstates = estates.map((estate) => {
+  //       if (estate.id === id) {
+  //         return {
+  //           ...estate,
+  //           sale: updatedSales[id] ? estate.sale - 300 : estate.sale + 300, // Adjust the sale price
+  //         };
+  //       }
+  //       return estate;
+  //     });
+  //     setEstates(updatedEstates);
+  //     calculateTotalSales(updatedEstates);
+  //     return updatedSales;
+  //   });
+  // };
+
+  
+
+  const finalTotal = priceDetails.reduce((acc, item) => {
+    const selectedCurrency = selectedCurrencies[item.id];
+    const amountInSelectedCurrency =
+      item.amount / currencyRates[selectedCurrency];
+    const discountInSelectedCurrency =
+      item.discount / currencyRates[selectedCurrency];
+    const finalAmount = amountInSelectedCurrency - discountInSelectedCurrency;
+    return acc + finalAmount;
+  }, 0);
 
   return (
     <Box className="units-container">
@@ -199,7 +244,7 @@ export default function Unitdetails() {
             onClick={(event) => handleCustomise(estate, event)}>
             <Box className="unit-img-container">
               <img src={estate.house} className="unit-img" />
-              <HiOutlineTrash className="unit-trash" />
+              <HiOutlineTrash className="unit-trash" onClick={(event) => handleDeleteEstate(estate.id, event)}/>
             </Box>
 
             <Box className="unit-details">
@@ -244,6 +289,8 @@ export default function Unitdetails() {
             </Box>
           </Box>
         ))}
+        
+      <Box></Box>
       </Box>
       <Popover
         id={id}
@@ -402,11 +449,11 @@ export default function Unitdetails() {
                     <React.Fragment key={item.id}>
                       <Box className="bill-name">
                         <Box>{item.billName}</Box>
-                        <Box>${amountInSelectedCurrency.toFixed(2)}</Box>
+                        <Box sx={{fontWeight: "600"}}>${amountInSelectedCurrency.toFixed(2)}</Box>
                       </Box>
                       <Box className="bill-discount">
                         <Box>Discount</Box>
-                        <Box className="dis-unit-details">$ 1,200</Box>
+                        <Box className="dis-unit-details" >$ 1,200</Box>
                       </Box>
                       <Divider className="bill-hr" orientation="horizontal" />
                     </React.Fragment>
