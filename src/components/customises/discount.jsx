@@ -158,12 +158,13 @@ const handleclose = () => {
                       <Box className="bill-discount">
                         <Box>Discount</Box>
                         <Box className="dis-amt">
-                          <Box className="price-amt">
-                            {discountInSelectedCurrency.toFixed(2)}
-                          </Box>
+                          <input className="price-amt" placeholder='Eg.1000'>
+                            {/* {discountInSelectedCurrency.toFixed(2)} */}
+                          </input>
                           <Divider className="price-amt-hr" />
                           <Box className="price-aed">
                             <select
+                            style={{backgroundColor: "#F8F9FB"}}
                               className="currency-select"
                               value={selectedCurrency}
                               onChange={(e) =>
