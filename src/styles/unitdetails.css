@@ -164,7 +164,7 @@
 
 .pricing-header{
     /* cursor: pointer; */
-    height: 70px;
+    height: 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -261,7 +261,7 @@
     padding-bottom: 4%;
 }
 .amenities-header{
-    height: 70px;
+    height: 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -488,8 +488,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
-    width: 90%;   
+    height: 55px;
+    width: 93%;   
     box-sizing: border-box;
 }
 .discount-title{
@@ -958,6 +958,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-self: end;
 }
 
 
