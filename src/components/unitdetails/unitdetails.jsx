@@ -21,6 +21,7 @@ import House from "../../assets/House.jpg";
 import GreenHouse from "../../assets/GreenHouse.jpg";
 import Room from "../../assets/Room.jpg";
 import Chairs from "../../assets/Chairs.jpg";
+import EstateHouse from "../../assets/EstateHouse.jpg";
 import Pricing from "../customises/pricing";
 import Amenities from "../customises/amenities";
 import Utilities from "../customises/utilities";
@@ -30,7 +31,7 @@ import Remove from "../customises/remove";
 export default function Unitdetails() {
   const [activeSales, setActiveSales] = useState({});
 
-  const [customise, setCustomise] = useState(false);
+  const [customise, setCustomise] = useState(false);  
   const [addpricing, setAddPricing] = useState(false);
   const [addamenities, setAddAmenities] = useState(false);
   const [addutilities, setAddUtilities] = useState(false);
@@ -38,6 +39,7 @@ export default function Unitdetails() {
   const [removecomponent, setRemoveComponent] = useState(false);
 
   const [unitdetails, setUnitDetails] = useState(false);
+  const [selectedEstate, setSelectedEstate] = useState(null);
   const [customiseAnchor, setCustomiseAnchor] = useState(null);
 
   const handleAmtSale = (id, event) => {
@@ -62,9 +64,10 @@ export default function Unitdetails() {
 
   const label = { inputProps: { "aria-label": "Switch demo" } };
 
-  const handleCustomise = (event) => {
+  const handleCustomise = (estate, event) => {
     event.stopPropagation();
     setUnitDetails(true);
+    setSelectedEstate(estate);
   };
 
   const handleAddPricing = () => {
@@ -101,47 +104,47 @@ export default function Unitdetails() {
     },
     {
       id: 2,
-      house: House,
-      name: "Jumeirah Estate",
-      sale: 1200,
-      subname: "Jumeirah Golf Estate",
-      area: "2000",
-      bed: 2,
-      tub: 2,
-      bhk: 2,
+      house: Chairs,
+      name: "Wolverine Estate",
+      sale: 1800,
+      subname: "Wolverine Golf Estate",
+      area: "6000",
+      bed: 3,
+      tub: 10,
+      bhk: 1,
     },
     {
       id: 3,
-      house: House,
-      name: "Jumeirah Estate",
-      sale: 1200,
-      subname: "Jumeirah Golf Estate",
-      area: "2000",
-      bed: 2,
-      tub: 2,
-      bhk: 2,
+      house: Room,
+      name: "Duplex Estate",
+      sale: 500,
+      subname: "Duplex House Estate",
+      area: "500",
+      bed: 1,
+      tub: 3,
+      bhk: 10,
     },
     {
       id: 4,
-      house: House,
-      name: "Jumeirah Estate",
-      sale: 1200,
-      subname: "Jumeirah Golf Estate",
+      house: GreenHouse,
+      name: "Form House",
+      sale: 5200,
+      subname: "Form House Estate",
       area: "2000",
-      bed: 2,
-      tub: 2,
-      bhk: 2,
+      bed: 22,
+      tub: 10,
+      bhk: 5,
     },
     {
       id: 5,
-      house: House,
-      name: "Jumeirah Estate",
-      sale: 1200,
-      subname: "Jumeirah Golf Estate",
-      area: "2000",
-      bed: 2,
-      tub: 2,
-      bhk: 2,
+      house: EstateHouse,
+      name: "Bungalow Estate",
+      sale: 4500,
+      subname: "Bungalow Golf Estate",
+      area: "2900",
+      bed: 7,
+      tub: 15,
+      bhk: 23,
     },
   ];
 
@@ -193,7 +196,7 @@ export default function Unitdetails() {
           <Box
             key={estate.id}
             className="unit-estate"
-            onClick={handleCustomise}>
+            onClick={(event) => handleCustomise(estate, event)}>
             <Box className="unit-img-container">
               <img src={estate.house} className="unit-img" />
               <HiOutlineTrash className="unit-trash" />
@@ -203,11 +206,9 @@ export default function Unitdetails() {
               <Box className="unit-estatename">
                 <Box>{estate.name}</Box>
                 <Box>
-                  {/* Conditionally render the discount message */}
                   {activeSales[estate.id] && (
                     <Box className="discount-message"> % Discount Applied </Box>
                   )}
-                  {/* Sale amount with toggle click */}
                   <Box
                     onClick={(event) => handleAmtSale(estate.id, event)}
                     className={
@@ -312,6 +313,7 @@ export default function Unitdetails() {
         open={unitdetails}
         onClose={() => setUnitDetails(false)}
         maxWidth="lg">
+          {selectedEstate && (
         <Box className="discount-contents">
           <Box className="discount-header">
             <Box className="discount-title">Unit Details</Box>
@@ -325,7 +327,7 @@ export default function Unitdetails() {
             <Box className="discount-img-name">
               <Box className="discount-img">
                 <Box className="discount-main-img">
-                  <img src={GreenHouse} className="discount-asset" />
+                  <img src={selectedEstate.house} className="discount-asset" />
                 </Box>
                 <Box className="discount-side-images">
                   <Box className="discount-row-img">
@@ -351,24 +353,24 @@ export default function Unitdetails() {
               </Box>
               <Box className="discount-bottom">
                 <Box className="discount-name-status">
-                  <Box className="discount-name">Jumeirah Estate</Box>
+                  <Box className="discount-name">{selectedEstate.name}</Box>
                   <Box className="discount-status">UNT-1234</Box>
                 </Box>
                 <Box className="discount-subname">
-                  Rubix Apartment, K Tower, Floor 1
+                {selectedEstate.subname}, K Tower, Floor 1
                 </Box>
                 <Box className="discount-quantities">
                   <BiBed />
-                  <Box className="discount-value">2</Box>
+                  <Box className="discount-value">{selectedEstate.bed}</Box>
                   <Box className="leaddetail-dot"></Box>
                   <PiBathtubLight />
-                  <Box className="discount-value">2</Box>
+                  <Box className="discount-value">{selectedEstate.tub}</Box>
                   <Box className="leaddetail-dot"></Box>
                   <GoHome />
-                  <Box className="discount-value">3BHK</Box>
+                  <Box className="discount-value">{selectedEstate.bhk}BHK</Box>
                   <Box className="leaddetail-dot"></Box>
                   <PiSquareHalfBottomLight />
-                  <Box className="discount-value">2000</Box>
+                  <Box className="discount-value">{selectedEstate.area}</Box>
                   <Box>Sq.Ft</Box>
                 </Box>
                 <Divider
@@ -423,6 +425,7 @@ export default function Unitdetails() {
             </Box>
           </Box>
         </Box>
+          )}
       </Dialog>
     </Box>
   );

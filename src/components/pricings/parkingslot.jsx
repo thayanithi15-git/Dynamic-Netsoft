@@ -161,9 +161,9 @@ export default function Parkingslot({ Onback }) {
       <Box className="pricing-top-sub">
         <Box className="pricing-bottom-top">UOM value</Box>
         <Box className="pricing-bottom-input">
-          <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
-            200
-          </Box>
+        <input style={{ fontSize: "14px", color: "#091B29",border: "none" }} placeholder="Value" className="inputprimary-box">
+            
+            </input>
           <Box sx={{ color: "#98A0AC" }}>SAR / Total</Box>
         </Box>
       </Box>

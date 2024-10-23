@@ -144,18 +144,18 @@ export default function Inventoryitem({Onback}) {
         <Box className="pricing-inventoryitems-sub">
           <Box className="pricing-bottom-top" sx={{fontSize: "12.5px"}}>Item Unit Price</Box>
           <Box className="pricing-bottom-input" sx={{marginTop: "4%"}}>
-            <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
-              200
-            </Box>
+          <input style={{ fontSize: "14px", color: "#091B29",border: "none" }} placeholder="Value" className="inputprimary-box">
+            
+            </input>
             <Box sx={{ color: "#98A0AC" }}>$</Box>
           </Box>
         </Box>
         <Box className="pricing-inventoryitems-sub">
           <Box className="pricing-bottom-top" sx={{fontSize: "12.5px"}}>Quantity</Box>
           <Box className="pricing-bottom-input" sx={{marginTop: "4%"}}>
-            <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
-              10
-            </Box>
+          <input style={{ fontSize: "14px", color: "#091B29",border: "none" }} placeholder="Quantity" className="inputprimary-box">
+            
+            </input>
             <Box sx={{ color: "#98A0AC" }}>Qty</Box>
           </Box>
         </Box>

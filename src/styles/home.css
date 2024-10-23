@@ -84,13 +84,13 @@ button{
     /* border-top: 1px solid #CFD4DE;   */
 }
 .home-body-leaddetails{
-    width: 31%;
+    width: 29%;
     display: flex;
     justify-content: center;
 }  
 .home-body-unitdetails{
     background-color: #F5F7FAE6;
-    width: 39%;
+    width: 41%;
     display: flex;
     justify-content: center;
     align-items: center;

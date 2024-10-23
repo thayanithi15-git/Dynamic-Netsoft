@@ -46,9 +46,9 @@ export default function Header() {
           <Box className={`header-notification-con ${notification ? "clicked" : ""}`} onClick={handleNotification}>
         <Badge
       badgeContent=""
-      color="primary" // Change to your desired color (primary, secondary, etc.)
+      color="primary" 
       overlap="circular"
-      variant="dot" // Use dot variant for a circular badge
+      variant="dot" 
       sx={{
         '& .MuiBadge-dot': {
           backgroundColor: "5078E1",

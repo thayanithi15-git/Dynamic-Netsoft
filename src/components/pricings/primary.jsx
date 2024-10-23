@@ -26,6 +26,12 @@ export default function Primary({ Onback }) {
     setSelectedValue(event.target.value);
   };
 
+  const [selectedValue2, setSelectedValue2] = useState("");
+
+  const handleChange2 = (event) => {
+    setSelectedValue2(event.target.value);
+  };
+
   const handleBack = () => {
     Onback();
   };
@@ -77,9 +83,7 @@ export default function Primary({ Onback }) {
               <MenuItem value="" disabled>
                 Pricing Component
               </MenuItem>
-              <MenuItem value={10}>Pricing Component 1</MenuItem>
-              <MenuItem value={20}>Pricing Component 2</MenuItem>
-              <MenuItem value={30}>Pricing Component 3</MenuItem>
+              <MenuItem value={10}>Pricing Component</MenuItem>
             </Select>
           </FormControl>
         </Box>
@@ -94,8 +98,8 @@ export default function Primary({ Onback }) {
         <Box className="pricing-buttons-gu">
           <FormControl size="small">
             <Select
-              value={selectedValue}
-              onChange={handleChange}
+              value={selectedValue2}
+              onChange={handleChange2}
               displayEmpty
               IconComponent={FaChevronDown}
               className="pricing-buttons-gst"
@@ -121,9 +125,7 @@ export default function Primary({ Onback }) {
               <MenuItem value="" disabled>
                 GST
               </MenuItem>
-              <MenuItem value={10}>GST 1</MenuItem>
-              <MenuItem value={20}>GST 2</MenuItem>
-              <MenuItem value={30}>GST 3</MenuItem>
+              <MenuItem value={10}>GST</MenuItem>
             </Select>
           </FormControl>
           {component.map((component) => (
@@ -141,9 +143,10 @@ export default function Primary({ Onback }) {
       <Box className="pricing-top-sub">
         <Box className="pricing-bottom-top">UOM value</Box>
         <Box className="pricing-bottom-input">
-          <Box sx={{ fontSize: "14px", color: "#091B29", fontWeight: "600" }}>
-            200
-          </Box>
+          <input
+            style={{ fontSize: "14px", color: "#091B29", border: "none" }}
+            placeholder="Value"
+            className="inputprimary-box"></input>
           <Box sx={{ color: "#98A0AC" }}>SAR / Total</Box>
         </Box>
       </Box>
