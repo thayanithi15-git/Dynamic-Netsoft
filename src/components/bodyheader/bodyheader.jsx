@@ -35,7 +35,7 @@ export default function Bodyheader() {
             sx={{
               height: "30px",
               fontSize: "14px",
-              padding: "0px 14px",
+              // padding: "0px 14px",
               lineHeight: "1.5",
               borderRadius: "8px",
               backgroundColor: "#F5F7FA",
