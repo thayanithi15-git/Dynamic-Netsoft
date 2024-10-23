@@ -13,12 +13,12 @@ import { HiOutlineTrash } from 'react-icons/hi2';
 export default function Remove({onclose}) {
 
     const initialBills = [
-        { id: 1, name: "Bill Name 1", amount: 1000 },
-        { id: 2, name: "Bill Name 2", amount: 1200 },
-        { id: 3, name: "Bill Name 3", amount: 1500 },
-        { id: 4, name: "Bill Name 4", amount: 1000 },
-        { id: 5, name: "Bill Name 5", amount: 800 },
-        { id: 6, name: "Bill Name 6", amount: 1100 },
+        { id: 1, name: "Duplex", amount: 1000 },
+        { id: 2, name: "Bungalow", amount: 1200 },
+        { id: 3, name: "Jumeirah", amount: 1500 },
+        { id: 4, name: "Form House", amount: 1000 },
+        { id: 5, name: "Golf Estate", amount: 800 },
+        { id: 6, name: "Wolverine", amount: 1100 },
       ];
     
       const [bills, setBills] = useState(initialBills);
@@ -120,7 +120,7 @@ const handleDelete = (id) => {
                       <Box className="bill-name">
                         <Box>{bill.name}</Box>
                         <Box className="prices-trash">
-                          <Box>${bill.amount}</Box>
+                          <Box sx={{fontWeight: "600"}}>${bill.amount}</Box>
                           <Box onClick={() => handleDelete(bill.id)}>
                             <HiOutlineTrash className="prices-trash-icon" />
                           </Box>

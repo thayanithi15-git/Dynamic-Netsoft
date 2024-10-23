@@ -14,15 +14,15 @@ export default function Discount({onclose}) {
     const priceDetails = [
         {
           id: 1,
-          billName: "Bill Name Here",
+          billName: "Bungalow",
           amount: 1000,
           discount: 100,
           currency: "AED",
         },
         {
           id: 2,
-          billName: "Bill Name Here",
-          amount: 1000,
+          billName: "Duplex",
+          amount: 2500,
           discount: 150,
           currency: "USD",
         },
@@ -153,7 +153,7 @@ const handleclose = () => {
                     <React.Fragment key={item.id}>
                       <Box className="bill-name">
                         <Box>{item.billName}</Box>
-                        <Box>${amountInSelectedCurrency.toFixed(2)}</Box>
+                        <Box sx={{fontWeight: "600"}}>${amountInSelectedCurrency.toFixed(2)}</Box>
                       </Box>
                       <Box className="bill-discount">
                         <Box>Discount</Box>
@@ -184,7 +184,7 @@ const handleclose = () => {
                 <Box className="prices-bottom">
                   <Box className="amenity-name">
                     <Box>Amenity Name here</Box>
-                    <Box>$1,000</Box>
+                    <Box sx={{fontWeight: "600"}}>$1,000</Box>
                   </Box>
                   <Box className="final-total">
                     <Box>Final Total</Box>
