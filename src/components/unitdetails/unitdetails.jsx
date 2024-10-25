@@ -12,7 +12,7 @@ import "../../styles/unitdetails.css";
 import { BiBed } from "react-icons/bi";
 import { PiBathtubLight } from "react-icons/pi";
 import { GoHome } from "react-icons/go";
-import { FaPlus } from "react-icons/fa6";
+import { FaPlus, FaSalesforce } from "react-icons/fa6";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { RxCross1 } from "react-icons/rx";
 import { PiSquareHalfBottomLight } from "react-icons/pi";
@@ -30,6 +30,8 @@ import Remove from "../customises/remove";
 import {TotalContext} from "../usecontext/usecontext";
 
 export default function Unitdetails() {
+
+  const { theme } = useContext(TotalContext)
 
   const { setTotal } = useContext(TotalContext);
   const  { setQty } = useContext(TotalContext);
@@ -234,27 +236,32 @@ export default function Unitdetails() {
   }, 0);
 
   return (
-    <Box className="units-container">
-      <Box className="units-title">Unit Details</Box>
-      <Box className="unit-all-estates">
+    <Box className="units-container" >
+      <Box className="units-title" sx={{ color: (theme) => theme.palette.bodyheader.color}}>Unit Details</Box>
+      <Box className="unit-all-estates" >
         {Estates.map((estate) => (
           <Box
             key={estate.id}
             className="unit-estate"
-            onClick={(event) => handleCustomise(estate, event)}>
-            <Box className="unit-img-container">
+            sx={{ backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,border: (theme) => theme.palette.bodyheader.bgcolor}} onClick={(event) => handleCustomise(estate, event)}
+            >
+            <Box className="unit-img-container" >
               <img src={estate.house} className="unit-img" />
-              <HiOutlineTrash className="unit-trash" onClick={(event) => handleDeleteEstate(estate.id, event)}/>
+              <HiOutlineTrash className="unit-trash" onClick={(event) => handleDeleteEstate(estate.id, event)} style={{ backgroundColor: (theme) => theme.palette.bodyheader.bgcolor}}/>
             </Box>
+            {/* <Box className="unit-tras" sx={{ backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,border: (theme) => theme.palette.bodyheader.bgcolor}}>
+              nj
+              </Box> */}
 
             <Box className="unit-details">
               <Box className="unit-estatename">
-                <Box>{estate.name}</Box>
+                <Box  sx={{ color: (theme) => theme.palette.bodyheader.color}}>{estate.name}</Box>
                 <Box>
                   {activeSales[estate.id] && (
                     <Box className="discount-message"> % Discount Applied </Box>
                   )}
                   <Box
+                   sx={activeSales[estate.id]? {color: "orange"} : { color: (theme) => theme.palette.bodyheader.color}}
                     onClick={(event) => handleAmtSale(estate.id, event)}
                     className={
                       activeSales[estate.id] ? "sale-active" : "sale-inactive"
@@ -329,20 +336,38 @@ export default function Unitdetails() {
       <Dialog open={addpricing} onClose={() => setAddPricing(false)} sx={{"& .MuiPaper-root": {
         width: "484px",
         height: "600px",
-        overflow: "hidden"
-      }}}>
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}
+      >
         <Pricing onclose={() => setAddPricing(false)} />
       </Dialog>
 
-      <Dialog open={addamenities} onClose={() => setAddAmenities(false)}>
+      <Dialog open={addamenities} onClose={() => setAddAmenities(false)} sx={{"& .MuiPaper-root": {
+        // width: "484px",
+        // height: "600px",
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}>
         <Amenities onclose={() => setAddAmenities(false)} />
       </Dialog>
 
-      <Dialog open={addutilities} onClose={() => setAddUtilities(false)}>
+      <Dialog open={addutilities} onClose={() => setAddUtilities(false)} sx={{"& .MuiPaper-root": {
+        // width: "484px",
+        // height: "600px",
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}>
         <Utilities onclose={() => setAddUtilities(false)} />
       </Dialog>
 
       <Dialog
+      sx={{"& .MuiPaper-root": {
+        // width: "484px",
+        // height: "600px",
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}
         open={adddiscount}
         onClose={() => setAddDiscount(false)}
         maxWidth="lg">
@@ -350,6 +375,12 @@ export default function Unitdetails() {
       </Dialog>
 
       <Dialog
+      sx={{"& .MuiPaper-root": {
+        // width: "484px",
+        // height: "600px",
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}
         open={removecomponent}
         onClose={() => setRemoveComponent(false)}
         maxWidth="lg">
@@ -357,6 +388,12 @@ export default function Unitdetails() {
       </Dialog>
 
       <Dialog
+      sx={{"& .MuiPaper-root": {
+        // width: "484px",
+        // height: "600px",
+        overflow: "hidden",
+        backgroundColor: (theme) => theme.palette.bodyheader.bgcolor,
+      }}}
         open={unitdetails}
         onClose={() => setUnitDetails(false)}
         maxWidth="lg">

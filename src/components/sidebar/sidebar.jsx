@@ -1,5 +1,5 @@
 import { Box, Divider } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/sidebar.css";
 import { FaChevronRight } from "react-icons/fa";
 import { RiDashboardFill, RiTeamLine } from "react-icons/ri";
@@ -11,8 +11,11 @@ import { HiCloudArrowUp } from "react-icons/hi2";
 import { PiNotepadFill } from "react-icons/pi";
 import { AiFillFolderOpen, AiFillMessage } from "react-icons/ai";
 import { FaChevronLeft } from "react-icons/fa6";
+import { TotalContext } from "../usecontext/usecontext";
 
 export default function Sidebar({ onIconclick, onSidebar }) {
+
+  const { theme } = useContext(TotalContext);
   const [clickedIcon, setClickedIcon] = useState(2);
   const [sidebar, Setsidebar] = useState(false);
 
@@ -49,7 +52,7 @@ export default function Sidebar({ onIconclick, onSidebar }) {
         className={`sidebar-icon-container ${sidebar ? "open" : ""}`}
         onClick={handleSidebarOpen}>
           <Box className={`sidebar-topactions ${sidebar ? "open" : ""}`}>
-        {sidebar ? <Box>Property Manager For Start up</Box> : ""}
+        {sidebar ? <Box >Property Manager For Start up</Box> : ""}
         {sidebar ? <FaChevronLeft className={`sidebar-icons ${sidebar ? "open" : ""}`} /> : <FaChevronRight className={`sidebar-icons ${sidebar ? "open" : ""}`} />}
         </Box>
       </Box>
@@ -71,10 +74,11 @@ export default function Sidebar({ onIconclick, onSidebar }) {
                   : sidebar
                   ? "open"
                   : ""
-              }`}>
+              }`}
+              >
               {item.icon}
             </Box>
-            {sidebar ? <Box>{item.content}</Box> : ""}
+            {sidebar ? <Box >{item.content}</Box> : ""}
           </Box>
         ))}
       </Box>
