@@ -1,9 +1,14 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import "../../styles/bodyrouting.css";
+import { TotalContext } from "../usecontext/usecontext";
 
 export default function Bodyroutings() {
+
+
+  const { theme } = useContext(TotalContext)
+  
   return (
     <Box className="bodyroutings-contents">
       <Box>Add Contact</Box>

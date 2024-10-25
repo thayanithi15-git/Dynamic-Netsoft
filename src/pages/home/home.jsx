@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/home.css";
 import { Box } from "@mui/material";
 import Header from "../../components/header/header";
 import Sidebar from "../../components/sidebar/sidebar";
-import Bodyheader from "../../components/bodyheader/bodyheader";
-import Bodyroutings from "../../components/bodyroutings/bodyroutings";
-import Leaddetails from "../../components/leaddetails/leaddetails";
-import Unitdetails from "../../components/unitdetails/unitdetails";
-import Quotationdetails from "../../components/quotationdetails/quotationdetails";
-import Bodyfooter from "../../components/bodyfooter/bodyfooter";
+import { TotalContext } from "../../components/usecontext/usecontext";
+import { AuthBodyContent } from "./main";
 
 export default function Home() {
+  const { theme } = useContext(TotalContext);
 
   const [clickedIcon, setClickedIcon] = useState();
   const [sidebar, Setsidebar] = useState(false);
@@ -18,48 +15,37 @@ export default function Home() {
   const handleclickedIcon = (onIconclick) => {
     setClickedIcon(onIconclick);
     console.log("Icon clicked = ", onIconclick);
-  };
+  };  
 
   const onSidebar = () => {
     Setsidebar(!sidebar);
-  }
+  };
 
-  return (
-    <Box className="home-page">
-      <Box className="home-header">
+  return ( 
+    <Box className="home-page" sx={{
+      backgroundColor: (theme) => theme.palette.backcolor.main,
+    }}>
+      <Box className="home-header" sx={{
+      backgroundColor: (theme) => theme.palette.header.main,
+    }}>
         <Header />
       </Box>
-      <Box className="home-body">
-        <Box className={`home-sidebar ${sidebar ? "open" : ""}`}>
-          <Sidebar onIconclick={handleclickedIcon} onSidebar={onSidebar}/>
+      <Box
+        className="home-body"
+        >
+        <Box
+          className={`home-sidebar ${sidebar ? "open" : ""}`}
+          sx={{ backgroundColor: (theme) => theme.palette.sidebar.main }}>
+          <Sidebar onIconclick={handleclickedIcon} onSidebar={onSidebar} />
         </Box>
-        {clickedIcon == 2 ? (
+        {clickedIcon === 2 ? (
           <Box className={`home-main ${sidebar ? "open" : ""}`}>
-            <Box className="home-main-header">
-              <Bodyheader />
-            </Box>
-            <Box className="home-maincontents-container">
-              <Box className="home-maincontents">
-                <Box className="home-body-header">
-                  <Bodyroutings />
-                </Box>
-                <Box className="home-body-mainpages">
-                  <Box className="home-body-leaddetails">
-                    <Leaddetails />
-                  </Box>
-                  <Box className="home-body-unitdetails">
-                    <Unitdetails />
-                  </Box>
-                  <Box className="home-body-quotationdetails">
-                    <Quotationdetails />
-                  </Box>
-                </Box>
-                <Box className="home-body-footer">
-                  <Bodyfooter />
-                </Box>
-              </Box>
-            </Box>
+            <AuthBodyContent />
           </Box>
+        ) : clickedIcon === 1 ? (
+          <Box>DashboardPage</Box>
+        ): clickedIcon === 3 ? (
+          <Box>DashboardPage</Box>
         ) : (
           ""
         )}
