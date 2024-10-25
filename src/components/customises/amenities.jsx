@@ -19,8 +19,8 @@ export default function Amenities({ onclose }) {
       {...props}
     />
   ))(({ theme }) => ({
-    width: 45,
-    height: 26,
+    width: 36,  
+    height: 20, 
     padding: 0,
     "& .MuiSwitch-switchBase": {
       padding: 0,
@@ -32,7 +32,9 @@ export default function Amenities({ onclose }) {
         border: "3px solid white",
         margin: "0% 0% 0% 5%",
         "& .MuiSwitch-thumb": {
-          backgroundColor: "#5AC782", 
+          backgroundColor: "#5AC782",
+          width: 16,  
+          height: 16, 
         },
         "& + .MuiSwitch-track": {
           backgroundColor: "#EEF9EE",
@@ -53,12 +55,12 @@ export default function Amenities({ onclose }) {
     },
     "& .MuiSwitch-thumb": {
       boxSizing: "border-box",
-      width: 22,
-      height: 22,
+      width: 16,  
+      height: 16, 
       backgroundColor: "#98A0AC",
     },
     "& .MuiSwitch-track": {
-      borderRadius: 26 / 2,
+      borderRadius: 20 / 2,
       backgroundColor: "#E4E8EE",
       opacity: 1,
       transition: theme.transitions.create(["background-color"], {
@@ -66,6 +68,7 @@ export default function Amenities({ onclose }) {
       }),
     },
   }));
+  
   const amenitiesData = [
     {
       id: 1,
@@ -170,7 +173,7 @@ export default function Amenities({ onclose }) {
                 <FormControlLabel
                   control={
                     <IOSSwitch
-                      sx={{ m: 1 }}
+                      sx={{ m: 0, }}
                       checked={!!checkedAmenities[item.id]}
                       onChange={() => handleSwitchChange(item.id)}
                     />
