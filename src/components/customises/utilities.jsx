@@ -161,3 +161,33 @@ export default function Utilities({ onclose }) {
     </Box>
   );
 }
+
+
+// {
+//   id: 3,
+//   name: "Wolverine",
+//   price: "$220.00",
+//   valid: "Valid Nov 10 - 30 Dec 23",
+//   img: Utility3,
+// },
+// {
+//   id: 4,
+//   name: "Jumeirah",
+//   price: "$100.00",
+//   valid: "Valid Jan 18 - 25 Mar 23",
+//   img: Utility4,
+// },
+// {
+//   id: 5,
+//   name: "Bungalow",
+//   price: "$90.00",
+//   valid: "Valid Apr 1 - 21 Jun 23",
+//   img: Utility5,
+// },
+// {
+//   id: 6,
+//   name: "Form House",
+//   price: "$30.00",
+//   valid: "Valid Jun 30 - 1 Aug 23",
+//   img: Utility6,
+// },
